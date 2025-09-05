@@ -8,7 +8,7 @@ _data = [Vector2(0, 0), 0.0, 1.10347, 0, 0, Vector2(0.154255, 0.269663), 1.40824
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whe2r"]
-size = Vector2(98, 98)
+size = Vector2(128, 98)
 
 [sub_resource type="Animation" id="Animation_uoul2"]
 length = 0.001
@@ -51,6 +51,9 @@ _data = {
 script = ExtResource("1_ignkv")
 jump_duration = 0.4
 jump_curve = SubResource("Curve_uoul2")
+wiggle_speed = 1000
+wiggle_rot_FREQ = 50.0
+wiggle_rot_AMP = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_whe2r")
@@ -63,3 +66,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_gt6fl")
 }
 speed_scale = 2.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -56.0
+offset_top = -204.0
+offset_right = 30.0
+offset_bottom = -122.0
+theme_override_font_sizes/font_size = 59
+text = "ffff"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
