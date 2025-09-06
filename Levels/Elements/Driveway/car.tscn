@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cpxs5ia6x0kgd" path="res://icon.svg" id="2_g2cik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ao48"]
-size = Vector2(128, 130)
+size = Vector2(106, 100)
 
 [node name="Car" type="Area2D" groups=["hazard"]]
+collision_layer = 2
 script = ExtResource("1_ubhkq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,6 +18,6 @@ texture = ExtResource("2_g2cik")
 shape = SubResource("RectangleShape2D_3ao48")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(10.8, 7.1)
+scale = Vector2(10.8, 1456.6)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -48,6 +48,7 @@ _data = {
 }
 
 [node name="Frog" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_ignkv")
 jump_duration = 0.4
 jump_curve = SubResource("Curve_uoul2")

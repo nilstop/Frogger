@@ -14,7 +14,7 @@ func _ready() -> void:
 	timer.wait_time = frequency_seconds
 	timer.start()
 	instantiate_car()
-	global_position = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y - cell * Global.cell_size + Global.cell_size / 2)
+	global_position = Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - cell * Global.cell_size + Global.cell_size / 2.0)
 
 func _on_timer_timeout() -> void:
 	instantiate_car()
