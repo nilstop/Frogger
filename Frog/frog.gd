@@ -5,52 +5,47 @@ signal frog_death
 #debugging label
 @onready var label: Label = $Label
 
+#hitboxes
+@onready var log_area: Area2D = $LogArea
+@onready var river_area: Area2D = $RiverArea
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
 
 @export var jump_duration : float
 @export var jump_curve : Curve
-#left and right movement variables
-@export var wiggle_speed : int
-#sin calculation for wiggle rotation
-@export var wiggle_rot_FREQ : float
-@export var wiggle_rot_AMP : float
 
-enum States {WIGGLE, JUMP, IDLE, DEAD}
+enum States {JUMP, IDLE, DEAD}
 
 var state : States = States.IDLE: set = set_state
 var jump_start_pos : Vector2
 var jump_end_pos : float
-var wiggle_dir : Vector2
-var wiggle_rot_progress
+var log_velocity : int
 
 func set_state(new_state: int):
 	state = new_state
 	
 	if state == States.JUMP:
-		animation_player.speed_scale = 1 / jump_duration
-		animation_player.play("jump")
-		animation_player.seek(0.0, true)
+		
 		jump_start_pos = global_position
 		jump_end_pos = global_position.x
 		#diagonal jumping
 		if Input.is_action_pressed("left"):
 			jump_end_pos += Global.cell_size
+			animation_player.play("jump_left")
 		elif Input.is_action_pressed("right"):
 			jump_end_pos -= Global.cell_size
-		
+			animation_player.play("jump_right")
+		else:
+			animation_player.play("jump")
+			rotation = 0
+		animation_player.speed_scale = 1.0 / jump_duration
+		animation_player.seek(0.0, true)
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, jump_duration)
 		await tween.finished
 		set_state(States.IDLE)
 		check_collision()
-	
-	if state == States.WIGGLE:
-		wiggle_rot_progress = 0.0
-	
-	if state == States.IDLE:
-		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
-			set_state(States.WIGGLE)
 
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos - jump_start_pos.x,Global.cell_size)
@@ -60,31 +55,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state != States.DEAD:
-		#jump when jump button pressed
+		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
 			set_state(States.JUMP)
 		
-		#set wiggle and idle state and check_collision for hazards
-		if state != States.JUMP:
-			#set state to wiggle when pressing left or right on ground
-			if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
-				set_state(States.WIGGLE)
-			
-			if not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-				state = States.IDLE
-		
+		#check collision when state is idle
+		if state == States.IDLE:
+			global_position.x += log_velocity * delta
 			check_collision()
-	
-	#walk and walk animation when state is wiggle
-	if state == States.WIGGLE:
-		wiggle_dir = Vector2(int(Input.is_action_pressed("right"))-int(Input.is_action_pressed("left")),0)
-		global_position += wiggle_dir * wiggle_speed * delta
-		wiggle_rot_progress += wiggle_rot_FREQ * delta * wiggle_dir.x
-		
-		rotation = deg_to_rad(sin(wiggle_rot_progress) * wiggle_rot_AMP)
-	
-	#reset rotation
-	rotation = lerp(rotation, 0.0, 0.05)
 	
 	if Input.is_action_just_pressed("debug_reset"):
 		show()
@@ -93,8 +71,16 @@ func _physics_process(delta: float) -> void:
 
 #run death() if you're colliding with the masked layer
 func check_collision():
-	if get_overlapping_areas():
-			death("roadkill")
+	if has_overlapping_areas():
+		death("roadkill")
+	if river_area.has_overlapping_areas():
+		if log_area.has_overlapping_areas():
+			var log = log_area.get_overlapping_areas().get(0)
+			log_velocity = log.speed * log.direction
+		else:
+			death("drowned")
+	else:
+		log_velocity = 0
 
 func death(cause: String):
 	

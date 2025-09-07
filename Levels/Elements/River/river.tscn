@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://uwkymhutksdn"]
+
+[ext_resource type="Script" uid="uid://vk4h8j6c461c" path="res://Levels/Elements/element.gd" id="1_4rj44"]
+[ext_resource type="Texture2D" uid="uid://cpxs5ia6x0kgd" path="res://icon.svg" id="2_tln4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rj44"]
+size = Vector2(4126, 128)
+
+[node name="River" type="Node2D"]
+script = ExtResource("1_4rj44")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.540846, 0.85788, 0.814265, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2048.0
+offset_top = -64.0
+offset_right = 2050.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_tln4j")
+stretch_mode = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4rj44")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

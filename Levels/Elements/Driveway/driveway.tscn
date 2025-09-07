@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb1g7kvj8un5h"]
 
-[ext_resource type="Script" uid="uid://vk4h8j6c461c" path="res://Levels/Elements/Driveway/driveway.gd" id="1_v0bpv"]
+[ext_resource type="Script" uid="uid://vk4h8j6c461c" path="res://Levels/Elements/element.gd" id="1_v0bpv"]
 [ext_resource type="Texture2D" uid="uid://cpxs5ia6x0kgd" path="res://icon.svg" id="2_rshn8"]
 
 [node name="Driveway" type="Node2D"]
