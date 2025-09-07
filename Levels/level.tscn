@@ -28,8 +28,8 @@ size_flags_vertical = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 539)
-offset = Vector2(1217.2, -170)
-zoom = Vector2(0.3, 0.3)
+offset = Vector2(640.245, -170)
+zoom = Vector2(0.4, 0.4)
 limit_left = -384
 limit_right = 1664
 position_smoothing_enabled = true
@@ -47,7 +47,7 @@ text = "ss"
 [node name="River" parent="Elements" instance=ExtResource("5_ecu0b")]
 entity = ExtResource("7_vx8ih")
 cell = 3
-frequency_seconds = 4.0
+frequency_seconds = 5.0
 speed = 400
 width_scale = 3.0
 direction = -1

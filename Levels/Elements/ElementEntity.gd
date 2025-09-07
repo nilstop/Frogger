@@ -13,17 +13,18 @@ var direction : int = -1
 var offset : int
 
 func _ready() -> void:
-	global_position.x = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale
+	#global_position.x = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale
 	sprite_2d.scale.x = width_scale
 	collision_shape.scale.x = width_scale
 	visible_notif.scale.x *= width_scale
-	if direction == 1:
-		global_position.x = -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale
+	#if direction == 1:
+		#global_position.x = -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale
 
 func _process(delta: float) -> void:
 	global_position.x += direction * speed * delta
-	
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()
+	if direction == -1:
+		if global_position.x < -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale:
+			global_position.x = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale
+	else:
+		if global_position.x > Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale:
+			global_position.x = -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale
