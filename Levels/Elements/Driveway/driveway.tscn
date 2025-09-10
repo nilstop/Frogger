@@ -22,7 +22,3 @@ grow_vertical = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_rshn8")
 stretch_mode = 1
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -6,6 +6,3 @@
 
 [node name="CollisionShape2D" parent="." index="1"]
 visible = false
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
-visible = false

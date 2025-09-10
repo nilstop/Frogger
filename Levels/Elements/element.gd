@@ -19,26 +19,33 @@ extends Node2D
 var inst_pos : Vector2
 var inst_positions : Array = []
 
-var left_corner = -Global.camera_x_divide * Global.cell_size - Global.cell_size/2.0 * width_scale
-var right_corner = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + Global.cell_size/2.0 * width_scale
+var left_corner : float
+var right_corner : float
 
 
 func _ready() -> void:
+	left_corner = -Global.camera_x_divide * Global.cell_size - Global.cell_size/2.0 * width_scale
+	right_corner = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + Global.cell_size/2.0 * width_scale
+	#set position using the exported cell variable, which is how far in the level the element is
+	global_position = Vector2(Global.screen_rect.x/2.0, Global.screen_rect.y - cell * Global.cell_size + Global.cell_size / 2.0)
 	if direction == -1:
 		inst_pos.x = right_corner
 		while inst_pos.x > left_corner:
+			#inst_positions.append(Vector2(inst_pos.x, inst_pos.y))
 			inst_positions.append(inst_pos)
 			inst_pos.x -= frequency_seconds * speed
 	else:
 		inst_pos.x = left_corner
 		while inst_pos.x < right_corner:
+			#inst_positions.append(Vector2(inst_pos.x, inst_pos.y))
 			inst_positions.append(inst_pos)
 			inst_pos.x += frequency_seconds * speed
 	instantiate(inst_pos)
-	#set position using the exported cell variable, which is how far in the level the element is
-	global_position = Vector2(Global.screen_rect.x/2.0, Global.screen_rect.y - cell * Global.cell_size + Global.cell_size / 2.0)
+	
 
 func instantiate(end_position):
+	if width_scale == 1.1:
+		print(inst_positions)
 	for n in inst_positions.size():
 		var instance = entity.instantiate()
 		instance.end_pos = end_position
