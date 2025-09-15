@@ -6,4 +6,4 @@
 collision_layer = 8
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(0.399153, 0.204882, 0.0425963, 1)
+region_rect = Rect2(0, 0, 25, 16)

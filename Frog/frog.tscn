@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
-[ext_resource type="Texture2D" uid="uid://cpxs5ia6x0kgd" path="res://icon.svg" id="1_whe2r"]
+[ext_resource type="Texture2D" uid="uid://cb5e5hkdf5" path="res://Frog/frog2.png" id="2_ignkv"]
 
 [sub_resource type="Curve" id="Curve_uoul2"]
 _data = [Vector2(0, 0), 0.0, 2.40041, 0, 0, Vector2(1, 1), -0.422472, 0.0, 0, 0]
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(8, 8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -48,6 +48,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_ignkv"]
 resource_name = "jump"
@@ -62,7 +74,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.433333, 1, 1.4),
 "transitions": PackedFloat32Array(0.707107, 2.07053, 0.707107, 0.258816),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0.9, 0.9), Vector2(1, 1)]
+"values": [Vector2(8, 8), Vector2(10.4, 10.4), Vector2(7.2, 7.2), Vector2(8, 8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -75,6 +87,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_gt6fl"]
@@ -90,7 +114,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.390689, 1, 1.4),
 "transitions": PackedFloat32Array(0.435275, 2.54912, 0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0.9, 0.9), Vector2(1, 1)]
+"values": [Vector2(8, 8), Vector2(10.4, 10.4), Vector2(7.2, 7.2), Vector2(8, 8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -103,6 +127,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.392292, 1.45434),
 "update": 0,
 "values": [0.0, -6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_tw4w0"]
@@ -118,7 +154,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.390689, 1, 1.4),
 "transitions": PackedFloat32Array(0.435275, 2.54912, 0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0.9, 0.9), Vector2(1, 1)]
+"values": [Vector2(8, 8), Vector2(10.4, 10.4), Vector2(7.2, 7.2), Vector2(8, 8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -131,6 +167,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.392292, 1.45434),
 "update": 0,
 "values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt6fl"]
@@ -154,7 +202,10 @@ jump_duration = 5.1
 jump_curve = SubResource("Curve_uoul2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_whe2r")
+scale = Vector2(8, 8)
+texture = ExtResource("2_ignkv")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_whe2r")

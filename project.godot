@@ -13,6 +13,7 @@ config_version=5
 config/name="Frogger"
 run/main_scene="uid://b1ayi5u7573vq"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -67,4 +68,5 @@ right={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.1386, 0.21, 0.1386, 1)
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.137255, 0.498039, 0.137255, 1)

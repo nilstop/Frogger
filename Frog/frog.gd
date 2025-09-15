@@ -46,6 +46,10 @@ func set_state(new_state: int):
 		await tween.finished
 		set_state(States.IDLE)
 		check_collision()
+	
+	if state == States.IDLE:
+		%Camera2D.shaketense += 400
+		%Camera2D.zoom = Vector2(0.95, 0.95)
 
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos - jump_start_pos.x,Global.cell_size)

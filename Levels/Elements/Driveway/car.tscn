@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://gbg0snmgj0rs"]
+[gd_scene load_steps=3 format=3 uid="uid://gbg0snmgj0rs"]
 
 [ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Levels/Elements/element_entity.tscn" id="1_cncvp"]
+[ext_resource type="Texture2D" uid="uid://b5q6nyqxhdpoc" path="res://Levels/Elements/Driveway/Car14.png" id="2_hqwqn"]
 
 [node name="Car" groups=["hazard"] instance=ExtResource("1_cncvp")]
 
-[node name="CollisionShape2D" parent="." index="1"]
-visible = false
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -16)
+texture = ExtResource("2_hqwqn")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 visible = false
