@@ -12,6 +12,7 @@ signal frog_death
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
 
+@export var land_particles : PackedScene
 @export var jump_duration : float
 @export var jump_curve : Curve
 
@@ -45,11 +46,12 @@ func set_state(new_state: int):
 		tween.tween_method(jump, 0.0, 1.0, jump_duration)
 		await tween.finished
 		set_state(States.IDLE)
-		check_collision()
 	
 	if state == States.IDLE:
-		%Camera2D.shaketense += 400
-		%Camera2D.zoom = Vector2(0.95, 0.95)
+		if !check_collision():
+			inst(land_particles)
+			%Camera2D.shaketense += 400
+			%Camera2D.zoom = Vector2(0.95, 0.95)
 
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos - jump_start_pos.x,Global.cell_size)
@@ -69,20 +71,22 @@ func _physics_process(delta: float) -> void:
 			check_collision()
 	
 	if Input.is_action_just_pressed("debug_reset"):
+		global_position = game_start_pos
 		show()
 		set_state(States.IDLE)
-		global_position = game_start_pos
 
 #run death() if you're colliding with the masked layer
 func check_collision():
 	if has_overlapping_areas():
 		death("roadkill")
+		return "roadkill"
 	if river_area.has_overlapping_areas():
 		if log_area.has_overlapping_areas():
 			var log = log_area.get_overlapping_areas().get(0)
 			log_velocity = log.speed * log.direction
 		else:
 			death("drowned")
+			return "drowned"
 	else:
 		log_velocity = 0
 
@@ -95,3 +99,10 @@ func death(cause: String):
 	else:
 		hide()
 	set_state(States.DEAD)
+
+func inst(scene):
+	var instance = scene.instantiate()
+	instance.get_child(0).emitting = true
+	instance.global_position = global_position
+	add_sibling(instance)
+	get_parent().move_child(instance, get_index())

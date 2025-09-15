@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=13 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="Texture2D" uid="uid://cb5e5hkdf5" path="res://Frog/frog2.png" id="2_ignkv"]
+[ext_resource type="PackedScene" uid="uid://5pnktr6wfxhj" path="res://Frog/frog_particles.tscn" id="2_uoul2"]
 
 [sub_resource type="Curve" id="Curve_uoul2"]
 _data = [Vector2(0, 0), 0.0, 2.40041, 0, 0, Vector2(1, 1), -0.422472, 0.0, 0, 0]
@@ -198,7 +199,8 @@ size = Vector2(32, 20)
 [node name="Frog" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_ignkv")
-jump_duration = 5.1
+land_particles = ExtResource("2_uoul2")
+jump_duration = 0.45
 jump_curve = SubResource("Curve_uoul2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

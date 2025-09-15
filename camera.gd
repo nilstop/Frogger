@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	label.text = str(global_position - frog.global_position)
 	
 	if wrap(Engine.get_frames_drawn(), 0 ,1) == 0:
-		shake_pos = Vector2(randi_range(-shaketense, shaketense), randi_range(-shaketense, shaketense))
+		shake_pos = Vector2.RIGHT.rotated(deg_to_rad(randi_range(0,360))) * shaketense#Vector2(randi_range(-shaketense, shaketense), randi_range(-shaketense, shaketense))
 	shaketense = lerp(shaketense, 0, 0.25)
 	
 	if %Frog.state == %Frog.States.JUMP:
