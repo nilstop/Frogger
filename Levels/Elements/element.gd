@@ -44,6 +44,8 @@ func set_map(width):
 		#tile if driveway
 		map.set_cell(map.local_to_map(global_position + Vector2(cell * Global.cell_size,0)), 0, tilemap_atlas_coord)
 		map.set_cell(map.local_to_map(global_position - Vector2(cell * Global.cell_size,0)), 0, tilemap_atlas_coord)
+		BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position + Vector2(cell * Global.cell_size,0)))
+		BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position - Vector2(cell * Global.cell_size,0)))
 		if tilemap_atlas_coord.y == 2.0:
 			Global.driveway_tiles.append(global_position + Vector2(cell * Global.cell_size,0))
 			Global.driveway_tiles.append(global_position - Vector2(cell * Global.cell_size,0))
