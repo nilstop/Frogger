@@ -41,5 +41,9 @@ func instantiate():
 
 func set_map(width):
 	for cell in width:
+		#tile if driveway
 		map.set_cell(map.local_to_map(global_position + Vector2(cell * Global.cell_size,0)), 0, tilemap_atlas_coord)
 		map.set_cell(map.local_to_map(global_position - Vector2(cell * Global.cell_size,0)), 0, tilemap_atlas_coord)
+		if tilemap_atlas_coord.y == 2.0:
+			Global.driveway_tiles.append(global_position + Vector2(cell * Global.cell_size,0))
+			Global.driveway_tiles.append(global_position - Vector2(cell * Global.cell_size,0))
