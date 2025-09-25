@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jbhmmb858fs4"
-path="res://.godot/imported/particle.png-7a67d816c5735fe20c86307c1a5093be.ctex"
+uid="uid://bkclyp8vtwlaj"
+path="res://.godot/imported/splash-Sheet.png-0d9addc092d7bbca30dfd8fec91d535e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Frog/particle.png"
-dest_files=["res://.godot/imported/particle.png-7a67d816c5735fe20c86307c1a5093be.ctex"]
+source_file="res://Frog/Effects/splash-Sheet.png"
+dest_files=["res://.godot/imported/splash-Sheet.png-0d9addc092d7bbca30dfd8fec91d535e.ctex"]
 
 [params]
 

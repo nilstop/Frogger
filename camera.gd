@@ -27,4 +27,4 @@ func _process(_delta: float) -> void:
 		zoom = lerp(zoom, Vector2(1.05, 1.05), 0.2)
 	else:
 		position_smoothing_speed = 2.0
-		zoom = lerp(zoom, Vector2(1.0, 1.0), 0.5)
+		zoom = lerp(zoom, Vector2(0.95, 0.95), 0.5)

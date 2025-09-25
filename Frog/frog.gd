@@ -12,11 +12,12 @@ signal frog_death
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
 
+@export var death_fx : PackedScene
 @export var land_particles : PackedScene
 @export var jump_duration : float
 @export var jump_curve : Curve
 
-enum States {JUMP, IDLE, DEAD}
+enum States {JUMP, IDLE, DEAD, WIN}
 
 var state : States = States.IDLE: set = set_state
 var jump_start_pos : Vector2
@@ -49,7 +50,7 @@ func set_state(new_state: int):
 	
 	if state == States.IDLE:
 		if !check_collision():
-			inst(land_particles)
+			inst(land_particles, "land_particles")
 			%Camera2D.shaketense += 400
 			%Camera2D.zoom = Vector2(0.95, 0.95)
 
@@ -64,31 +65,37 @@ func _physics_process(delta: float) -> void:
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
 			set_state(States.JUMP)
-		
-		#check collision when state is idle
+	
+	#label.text = str(state)
+	if state != States.DEAD:
+	#check collision when state is idle
 		if state == States.IDLE:
 			global_position.x += log_velocity * delta
-			check_collision()
+			if check_collision():
+				death(check_collision())
 	
 	if Input.is_action_just_pressed("debug_reset"):
+		print("debug reset")
 		global_position = game_start_pos
 		show()
 		set_state(States.IDLE)
 
 #run death() if you're colliding with the masked layer
 func check_collision():
+	print("collision checked")
 	if has_overlapping_areas():
-		death("roadkill")
 		return "roadkill"
 	if river_area.has_overlapping_areas():
+		print("overlaps river area")
 		if log_area.has_overlapping_areas():
 			var log = log_area.get_overlapping_areas().get(0)
 			log_velocity = log.speed * log.direction
 		else:
-			death("drowned")
+			print("drowned")
 			return "drowned"
 	else:
 		log_velocity = 0
+		return
 
 func death(cause: String):
 	
@@ -96,13 +103,18 @@ func death(cause: String):
 	if cause == "roadkill":
 		if state != States.JUMP:
 			hide()
+	if cause == "drowned":
+		hide()
+		inst(death_fx, "death_fx")
+		
 	else:
 		hide()
 	set_state(States.DEAD)
 
-func inst(scene):
+func inst(scene : PackedScene, type : String):
 	var instance = scene.instantiate()
-	instance.get_child(0).emitting = true
+	if type == "land_particles":
+		instance.get_child(0).emitting = true
 	instance.global_position = global_position
 	add_sibling(instance)
 	get_parent().move_child(instance, get_index())

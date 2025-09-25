@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://brjd62abuxr58"]
+
+[ext_resource type="PackedScene" uid="uid://vvc1vxwwihbl" path="res://Levels/Elements/map_and_pos.tscn" id="1_ebref"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrn6q"]
+size = Vector2(4126, 128)
+
+[node name="Goal" type="Node2D"]
+
+[node name="TileMapScript" parent="." instance=ExtResource("1_ebref")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rrn6q")
