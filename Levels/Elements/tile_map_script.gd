@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var map: TileMapLayer
+@onready var map: TileMapLayer = get_tree().get_first_node_in_group("tilemap")
 
 
 @export var tilemap_atlas_coord : Vector2
@@ -10,9 +10,8 @@ var cell : int
 func _ready() -> void:
 	
 	cell = get_parent().cell
-	global_position = Vector2(Global.screen_rect.x/2.0, Global.screen_rect.y - cell * Global.cell_size + Global.cell_size / 2.0)
+	get_parent().global_position = Vector2(Global.screen_rect.x/2.0, Global.screen_rect.y - cell * Global.cell_size + Global.cell_size / 2.0)
 	set_map(30)
-	print(map)
 
 func set_map(width):
 	

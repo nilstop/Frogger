@@ -35,7 +35,7 @@ enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg")
 
 [global_group]
 
-hazard=""
+tilemap=""
 
 [input]
 
@@ -74,4 +74,4 @@ right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.137255, 0.498039, 0.137255, 1)
+environment/defaults/default_clear_color=Color(0.1365, 0.1806, 0.21, 1)

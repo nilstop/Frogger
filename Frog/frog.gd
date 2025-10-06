@@ -8,6 +8,8 @@ signal frog_death
 #hitboxes
 @onready var log_area: Area2D = $LogArea
 @onready var river_area: Area2D = $RiverArea
+@onready var goal_area: Area2D = $GoalArea
+
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
@@ -46,13 +48,20 @@ func set_state(new_state: int):
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, jump_duration)
 		await tween.finished
-		set_state(States.IDLE)
+		print("jumpfinished")
+		if check_collision():
+			death(check_collision())
+		else:
+			set_state(States.IDLE)
 	
 	if state == States.IDLE:
 		if !check_collision():
 			inst(land_particles, "land_particles")
 			%Camera2D.shaketense += 400
 			%Camera2D.zoom = Vector2(0.95, 0.95)
+	
+	if state == States.WIN:
+		print("win")
 
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos - jump_start_pos.x,Global.cell_size)
@@ -61,6 +70,7 @@ func _ready() -> void:
 	global_position = game_start_pos
 
 func _physics_process(delta: float) -> void:
+	print(state)
 	if state != States.DEAD:
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
@@ -81,6 +91,7 @@ func _physics_process(delta: float) -> void:
 
 #run death() if you're colliding with the masked layer
 func check_collision():
+	print("collission checked")
 	if has_overlapping_areas():
 		return "roadkill"
 	if river_area.has_overlapping_areas():
@@ -88,24 +99,32 @@ func check_collision():
 			var log = log_area.get_overlapping_areas().get(0)
 			log_velocity = log.speed * log.direction
 		else:
+			print("drown")
 			return "drowned"
 	else:
 		log_velocity = 0
 		return
+	if goal_area.has_overlapping_areas():
+		print("win")
+		set_state(States.WIN)
+		return "win"
+
 
 func death(cause: String):
-	
+	print("death")
 	emit_signal("frog_death")
 	if cause == "roadkill":
 		if state != States.JUMP:
 			hide()
-	if cause == "drowned":
+			set_state(States.DEAD)
+	elif cause == "drowned":
 		hide()
 		inst(death_fx, "death_fx")
+		set_state(States.DEAD)
 		
 	else:
-		hide()
-	set_state(States.DEAD)
+		set_state(States.IDLE)
+	
 
 func inst(scene : PackedScene, type : String):
 	var instance = scene.instantiate()

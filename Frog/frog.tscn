@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=15 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="PackedScene" uid="uid://b1ssjgqt4r72u" path="res://Frog/Effects/death_fx.tscn" id="2_gt6fl"]
@@ -194,6 +194,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ignkv"]
 size = Vector2(18, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt6fl"]
+size = Vector2(108, 84)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoul2"]
 size = Vector2(32, 20)
 
@@ -233,7 +236,14 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RiverArea"]
 shape = SubResource("RectangleShape2D_ignkv")
-debug_color = Color(0.576277, 0.553548, 3.85046e-07, 0.42)
+debug_color = Color(0.714703, 0.483205, 7.70092e-07, 0.42)
+
+[node name="GoalArea" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalArea"]
+shape = SubResource("RectangleShape2D_gt6fl")
+debug_color = Color(0, 0.0233333, 0.7, 0.541176)
 
 [node name="LogArea" type="Area2D" parent="."]
 collision_mask = 8
