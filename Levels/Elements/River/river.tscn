@@ -13,6 +13,8 @@ script = ExtResource("1_4rj44")
 entity = ExtResource("2_tln4j")
 texture = ExtResource("3_cswxx")
 
+[node name="TileMapScript" parent="." instance=ExtResource("4_cswxx")]
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -20,7 +22,5 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_4rj44")
-
-[node name="TileMapScript" parent="." instance=ExtResource("4_cswxx")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

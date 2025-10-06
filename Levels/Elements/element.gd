@@ -22,8 +22,6 @@ func _ready() -> void:
 	timer.wait_time = frequency_seconds
 	timer.start()
 	#set position using the exported cell variable, which is how far in the level the element is
-	
-	
 
 func _on_timer_timeout() -> void:
 	instantiate()

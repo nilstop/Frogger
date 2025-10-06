@@ -75,23 +75,19 @@ func _physics_process(delta: float) -> void:
 				death(check_collision())
 	
 	if Input.is_action_just_pressed("debug_reset"):
-		print("debug reset")
 		global_position = game_start_pos
 		show()
 		set_state(States.IDLE)
 
 #run death() if you're colliding with the masked layer
 func check_collision():
-	print("collision checked")
 	if has_overlapping_areas():
 		return "roadkill"
 	if river_area.has_overlapping_areas():
-		print("overlaps river area")
 		if log_area.has_overlapping_areas():
 			var log = log_area.get_overlapping_areas().get(0)
 			log_velocity = log.speed * log.direction
 		else:
-			print("drowned")
 			return "drowned"
 	else:
 		log_velocity = 0

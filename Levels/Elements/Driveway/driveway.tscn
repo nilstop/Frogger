@@ -10,9 +10,8 @@ script = ExtResource("1_v0bpv")
 entity = ExtResource("2_v0bpv")
 texture = ExtResource("3_rshn8")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TileMapScript" parent="." instance=ExtResource("4_rshn8")]
 
-[node name="MapAndPos" parent="." instance=ExtResource("4_rshn8")]
-tilemap_atlas_coord = Vector2(0, 2)
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
