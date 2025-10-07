@@ -50,6 +50,7 @@ func set_state(new_state: int):
 		await tween.finished
 		print("jumpfinished")
 		if check_collision():
+			print("jump fnsh coll action")
 			collision_action(check_collision())
 		else:
 			set_state(States.IDLE)
@@ -57,8 +58,8 @@ func set_state(new_state: int):
 	if state == States.IDLE:
 		if !check_collision():
 			inst(land_particles, "land_particles")
-			%Camera2D.shaketense += 400
-			%Camera2D.zoom = Vector2(0.95, 0.95)
+			%Camera2D.shaketense += 15
+			%Camera2D.zoom = Vector2(0.9, 0.9)
 	
 	if state == States.WIN:
 		print("win")
@@ -113,9 +114,8 @@ func collision_action(action: String):
 	print("death")
 	emit_signal("frog_death")
 	if action == "roadkill":
-		if state != States.JUMP:
-			hide()
-			set_state(States.DEAD)
+		hide()
+		set_state(States.DEAD)
 	elif action == "drowned":
 		hide()
 		inst(death_fx, "death_fx")

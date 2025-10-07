@@ -35,14 +35,8 @@ offset = Vector2(0, -170)
 limit_left = -768
 limit_right = 2048
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 9.0
 script = ExtResource("4_xto7t")
-
-[node name="Label" type="Label" parent="Camera2D"]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-text = "ss"
 
 [node name="TileMap" parent="." instance=ExtResource("2_t80w2")]
 unique_name_in_owner = true
@@ -50,31 +44,29 @@ position = Vector2(64, -48)
 
 [node name="Elements" type="Node2D" parent="."]
 
-[node name="River" parent="Elements" instance=ExtResource("5_ecu0b")]
-position = Vector2(0, 1)
+[node name="Driveway3" parent="Elements" instance=ExtResource("2_gtnvv")]
 cell = 3
-frequency_seconds = 2.3
-speed = 400
+frequency_seconds = 1.2
+speed = 500
 direction = -1
 
-[node name="River2" parent="Elements" instance=ExtResource("5_ecu0b")]
-position = Vector2(0, 1)
+[node name="River5" parent="Elements" instance=ExtResource("5_ecu0b")]
 cell = 4
-frequency_seconds = 3.2
-speed = 300
+frequency_seconds = 0.7
+speed = 650
 direction = 1
 
-[node name="Driveway3" parent="Elements" instance=ExtResource("2_gtnvv")]
-cell = 6
-frequency_seconds = 0.8
-speed = 600
-direction = 1
+[node name="River6" parent="Elements" instance=ExtResource("5_ecu0b")]
+cell = 5
+frequency_seconds = 3.0
+speed = 250
+direction = -1
 
 [node name="Driveway4" parent="Elements" instance=ExtResource("2_gtnvv")]
-cell = 5
-frequency_seconds = 1.5
-speed = 400
-direction = 1
+cell = 6
+frequency_seconds = 3.5
+speed = 350
+direction = -1
 
 [node name="Driveway5" parent="Elements" instance=ExtResource("2_gtnvv")]
 cell = 9
@@ -107,9 +99,9 @@ speed = 350
 direction = -1
 
 [node name="Goal" parent="Elements" instance=ExtResource("7_8a2b0")]
-cell = 2
+cell = 15
 
-[node name="Frog" parent="Elements" instance=ExtResource("1_s41d2")]
+[node name="Frog" parent="." instance=ExtResource("1_s41d2")]
 unique_name_in_owner = true
 position = Vector2(640, 656)
 jump_duration = 0.43

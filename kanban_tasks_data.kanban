@@ -11,22 +11,26 @@
 			"uuid": "3cc55b8d-fc63-4a33-a2f8-54c2ecdafe80",
 			"title": "Todo",
 			"tasks": [
-				"45f16aa1-90cf-46e0-bd5f-f4c1cec3d2ba",
-				"fae518b0-a748-4197-9056-b950237fd19e",
 				"b050b257-b4de-4d3b-9066-813c5c5b9742",
 				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
-				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc"
+				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
+				"05d66e7c-9c8f-4842-8c5e-1705136ac126"
 			]
 		},
 		{
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"fae518b0-a748-4197-9056-b950237fd19e"
+			]
 		},
 		{
 			"uuid": "d3ebedf8-f4d3-4a10-9303-78a84ab6a618",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"45f16aa1-90cf-46e0-bd5f-f4c1cec3d2ba",
+				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc"
+			]
 		}
 	],
 	"tasks": [
@@ -61,6 +65,20 @@
 		{
 			"uuid": "5f3ce256-c621-4d23-9c68-39ef3fbc53dc",
 			"title": "Fix jumping on cars",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "0886aaf8-c6cf-44be-adfd-5803c6df8579",
+			"title": "Car Death Animation",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "05d66e7c-9c8f-4842-8c5e-1705136ac126",
+			"title": "Death and win screens",
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []
