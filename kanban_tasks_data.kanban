@@ -15,15 +15,14 @@
 				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
 				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
 				"05d66e7c-9c8f-4842-8c5e-1705136ac126",
-				"401682c2-c50d-49bd-b2a7-b8879e266cf8",
-				"fae518b0-a748-4197-9056-b950237fd19e"
+				"401682c2-c50d-49bd-b2a7-b8879e266cf8"
 			]
 		},
 		{
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
 			"tasks": [
-				"22cdeffd-108e-4a49-9123-d9c1e6514136"
+				"fae518b0-a748-4197-9056-b950237fd19e"
 			]
 		},
 		{
@@ -31,7 +30,8 @@
 			"title": "Done",
 			"tasks": [
 				"45f16aa1-90cf-46e0-bd5f-f4c1cec3d2ba",
-				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc"
+				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc",
+				"22cdeffd-108e-4a49-9123-d9c1e6514136"
 			]
 		}
 	],
