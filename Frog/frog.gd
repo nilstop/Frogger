@@ -58,7 +58,7 @@ func set_state(new_state: int):
 	if state == States.IDLE:
 		if !check_collision():
 			inst(land_particles, "land_particles")
-			%Camera2D.shaketense += 15
+			%Camera2D.shaketense += 400
 			%Camera2D.zoom = Vector2(0.9, 0.9)
 	
 	if state == States.WIN:

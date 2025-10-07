@@ -14,14 +14,16 @@
 				"b050b257-b4de-4d3b-9066-813c5c5b9742",
 				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
 				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
-				"05d66e7c-9c8f-4842-8c5e-1705136ac126"
+				"05d66e7c-9c8f-4842-8c5e-1705136ac126",
+				"401682c2-c50d-49bd-b2a7-b8879e266cf8",
+				"fae518b0-a748-4197-9056-b950237fd19e"
 			]
 		},
 		{
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
 			"tasks": [
-				"fae518b0-a748-4197-9056-b950237fd19e"
+				"22cdeffd-108e-4a49-9123-d9c1e6514136"
 			]
 		},
 		{
@@ -78,7 +80,21 @@
 		},
 		{
 			"uuid": "05d66e7c-9c8f-4842-8c5e-1705136ac126",
-			"title": "Death and win screens",
+			"title": "Death and win screen",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "401682c2-c50d-49bd-b2a7-b8879e266cf8",
+			"title": "Win animation",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "22cdeffd-108e-4a49-9123-d9c1e6514136",
+			"title": "Fix sea tilemap issue",
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []
