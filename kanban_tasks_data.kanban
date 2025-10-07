@@ -1,0 +1,82 @@
+{
+	"categories": [
+		{
+			"uuid": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "3cc55b8d-fc63-4a33-a2f8-54c2ecdafe80",
+			"title": "Todo",
+			"tasks": [
+				"45f16aa1-90cf-46e0-bd5f-f4c1cec3d2ba",
+				"fae518b0-a748-4197-9056-b950237fd19e",
+				"b050b257-b4de-4d3b-9066-813c5c5b9742",
+				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
+				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc"
+			]
+		},
+		{
+			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "d3ebedf8-f4d3-4a10-9303-78a84ab6a618",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "45f16aa1-90cf-46e0-bd5f-f4c1cec3d2ba",
+			"title": "Fix Win",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "fae518b0-a748-4197-9056-b950237fd19e",
+			"title": "Timer",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "b050b257-b4de-4d3b-9066-813c5c5b9742",
+			"title": "Main Menu",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "369db7ba-ace4-4007-ae0b-5a75421bdb0d",
+			"title": "Level Handling",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "5f3ce256-c621-4d23-9c68-39ef3fbc53dc",
+			"title": "Fix jumping on cars",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"3cc55b8d-fc63-4a33-a2f8-54c2ecdafe80"
+			],
+			[
+				"b39c4b10-a731-4287-a3e8-d77747c4272e"
+			],
+			[
+				"d3ebedf8-f4d3-4a10-9303-78a84ab6a618"
+			]
+		]
+	}
+}

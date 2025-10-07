@@ -10,6 +10,7 @@ size = Vector2(4126, 128)
 script = ExtResource("1_nm1hf")
 
 [node name="TileMapScript" parent="." instance=ExtResource("1_ebref")]
+tilemap_atlas_coord = Vector2(30, 30)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

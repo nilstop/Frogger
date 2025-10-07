@@ -51,12 +51,14 @@ position = Vector2(64, -48)
 [node name="Elements" type="Node2D" parent="."]
 
 [node name="River" parent="Elements" instance=ExtResource("5_ecu0b")]
+position = Vector2(0, 1)
 cell = 3
 frequency_seconds = 2.3
 speed = 400
 direction = -1
 
 [node name="River2" parent="Elements" instance=ExtResource("5_ecu0b")]
+position = Vector2(0, 1)
 cell = 4
 frequency_seconds = 3.2
 speed = 300

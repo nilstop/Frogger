@@ -5,6 +5,7 @@ extends Node2D
 
 @export var tilemap_atlas_coord : Vector2
 
+
 var cell : int
 
 func _ready() -> void:
@@ -14,7 +15,6 @@ func _ready() -> void:
 	set_map(30)
 
 func set_map(width):
-	
 	for ccell in width:
 		#tile if driveway
 		map.set_cell(map.local_to_map(global_position + Vector2(ccell * Global.cell_size,0)), 0, tilemap_atlas_coord)
