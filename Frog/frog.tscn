@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=16 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="PackedScene" uid="uid://b1ssjgqt4r72u" path="res://Frog/Effects/death_fx.tscn" id="2_gt6fl"]
@@ -183,12 +183,52 @@ tracks/2/keys = {
 "values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
 }
 
+[sub_resource type="Animation" id="Animation_fskf8"]
+resource_name = "Win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 1),
+"transitions": PackedFloat32Array(0.707107, 2.07053, 0.258816),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(12, 12), Vector2(8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.392292, 2.05675),
+"update": 0,
+"values": [0.0, 9.42478]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt6fl"]
 _data = {
 &"RESET": SubResource("Animation_uoul2"),
 &"jump": SubResource("Animation_ignkv"),
 &"jump_left": SubResource("Animation_gt6fl"),
-&"jump_right": SubResource("Animation_tw4w0")
+&"jump_right": SubResource("Animation_tw4w0"),
+&"win": SubResource("Animation_fskf8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ignkv"]
@@ -215,6 +255,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_whe2r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -232,6 +273,7 @@ offset_bottom = -122.0
 theme_override_font_sizes/font_size = 59
 
 [node name="RiverArea" type="Area2D" parent="."]
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RiverArea"]
@@ -239,6 +281,7 @@ shape = SubResource("RectangleShape2D_ignkv")
 debug_color = Color(0.714703, 0.483205, 7.70092e-07, 0.42)
 
 [node name="GoalArea" type="Area2D" parent="."]
+visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalArea"]
@@ -246,6 +289,7 @@ shape = SubResource("RectangleShape2D_gt6fl")
 debug_color = Color(0, 0.0233333, 0.7, 0.541176)
 
 [node name="LogArea" type="Area2D" parent="."]
+visible = false
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LogArea"]

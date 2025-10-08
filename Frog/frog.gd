@@ -1,6 +1,8 @@
 extends Area2D
 
 signal frog_death
+signal first_input
+signal start
 
 #debugging label
 @onready var label: Label = $Label
@@ -23,22 +25,22 @@ enum States {JUMP, IDLE, DEAD, WIN}
 
 var state : States = States.IDLE: set = set_state 
 var jump_start_pos : Vector2
-var jump_end_pos : float
+var jump_end_pos : Vector2
 var log_velocity : int
 
 func set_state(new_state: int):
 	state = new_state
 	
 	if state == States.JUMP:
-		
+		emit_signal("first_input")
 		jump_start_pos = global_position
-		jump_end_pos = global_position.x
+		jump_end_pos = global_position + Vector2(0, Global.cell_size)
 		#diagonal jumping
 		if Input.is_action_pressed("left"):
-			jump_end_pos += Global.cell_size
+			jump_end_pos += Vector2(Global.cell_size,0)
 			animation_player.play("jump_left")
 		elif Input.is_action_pressed("right"):
-			jump_end_pos -= Global.cell_size
+			jump_end_pos -= Vector2(Global.cell_size,0)
 			animation_player.play("jump_right")
 		else:
 			animation_player.play("jump")
@@ -62,12 +64,22 @@ func set_state(new_state: int):
 			%Camera2D.zoom = Vector2(0.9, 0.9)
 	
 	if state == States.WIN:
-		print("win")
-
+		jump_start_pos = global_position
+		jump_end_pos = global_position + Vector2(0, Global.cell_size * 3)
+		animation_player.speed_scale = 1.35
+		animation_player.play("win")
+		animation_player.seek(0.0, true)
+		var tween = create_tween()
+		tween.tween_method(jump, 0.0, 1.0, 1.0/animation_player.speed_scale)
+		await tween.finished
+		hide()
+		inst(death_fx, "death_fx")
+	
 func jump(curve_time):
-	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos - jump_start_pos.x,Global.cell_size)
+	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos.x - jump_start_pos.x,jump_end_pos.y - jump_start_pos.y)
 
 func _ready() -> void:
+	emit_signal("start")
 	global_position = game_start_pos
 
 func _physics_process(delta: float) -> void:
@@ -86,6 +98,8 @@ func _physics_process(delta: float) -> void:
 				collision_action(check_collision())
 	
 	if Input.is_action_just_pressed("debug_reset"):
+		emit_signal("start")
+		rotation = deg_to_rad(0.0)
 		global_position = game_start_pos
 		show()
 		set_state(States.IDLE)
@@ -99,8 +113,8 @@ func check_collision():
 		return "win"
 	if river_area.has_overlapping_areas():
 		if log_area.has_overlapping_areas():
-			var log = log_area.get_overlapping_areas().get(0)
-			log_velocity = log.speed * log.direction
+			var LOG = log_area.get_overlapping_areas().get(0)
+			log_velocity = LOG.speed * LOG.direction
 		else:
 			print("drown")
 			return "drowned"
