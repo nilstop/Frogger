@@ -12,7 +12,6 @@ func _ready() -> void:
 	frog.connect("frog_death", stop)
 
 func _process(delta: float) -> void:
-	print(str(Global.time))
 	if await_state == false:
 		Global.time += delta
 		set_label_text()

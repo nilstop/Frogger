@@ -27,6 +27,7 @@ var state : States = States.IDLE: set = set_state
 var jump_start_pos : Vector2
 var jump_end_pos : Vector2
 var log_velocity : int
+var win_animation := false
 
 func set_state(new_state: int):
 	state = new_state
@@ -50,28 +51,32 @@ func set_state(new_state: int):
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, jump_duration)
 		await tween.finished
-		print("jumpfinished")
 		if check_collision():
-			print("jump fnsh coll action")
 			collision_action(check_collision())
 		else:
 			set_state(States.IDLE)
 	
 	if state == States.IDLE:
 		if !check_collision():
-			inst(land_particles, "land_particles")
-			%Camera2D.shaketense += 400
-			%Camera2D.zoom = Vector2(0.9, 0.9)
+			print("idle land")
+			land_fx()
+		else:
+			print("idle coll")
 	
 	if state == States.WIN:
+		win_animation = true
+		inst(land_particles, "land_particles")
+		%Camera2D.shaketense = 1
 		jump_start_pos = global_position
 		jump_end_pos = global_position + Vector2(0, Global.cell_size * 3)
-		animation_player.speed_scale = 1.35
+		animation_player.speed_scale = 1.05
 		animation_player.play("win")
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, 1.0/animation_player.speed_scale)
 		await tween.finished
+		win_animation = false
+		%Camera2D.zoom = Vector2(0.65, 0.65)
 		hide()
 		inst(death_fx, "death_fx")
 	
@@ -83,7 +88,6 @@ func _ready() -> void:
 	global_position = game_start_pos
 
 func _physics_process(delta: float) -> void:
-	print(state)
 	if state != States.DEAD and state != States.WIN:
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
@@ -106,7 +110,6 @@ func _physics_process(delta: float) -> void:
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
-	print("collission checked")
 	if has_overlapping_areas():
 		return "roadkill"
 	if goal_area.has_overlapping_areas():
@@ -116,7 +119,6 @@ func check_collision():
 			var LOG = log_area.get_overlapping_areas().get(0)
 			log_velocity = LOG.speed * LOG.direction
 		else:
-			print("drown")
 			return "drowned"
 	else:
 		log_velocity = 0
@@ -125,7 +127,6 @@ func check_collision():
 
 
 func collision_action(action: String):
-	print("death")
 	emit_signal("frog_death")
 	if action == "roadkill":
 		hide()
@@ -135,7 +136,6 @@ func collision_action(action: String):
 		inst(death_fx, "death_fx")
 		set_state(States.DEAD)
 	elif action == "win":
-		print("win")
 		set_state(States.WIN)
 	else:
 		set_state(States.IDLE)
@@ -148,3 +148,8 @@ func inst(scene : PackedScene, type : String):
 	instance.global_position = global_position
 	add_sibling(instance)
 	get_parent().move_child(instance, get_index())
+
+func land_fx():
+	inst(land_particles, "land_particles")
+	%Camera2D.shaketense += 400.0
+	%Camera2D.zoom = Vector2(0.9, 0.9)
