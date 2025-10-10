@@ -58,10 +58,7 @@ func set_state(new_state: int):
 	
 	if state == States.IDLE:
 		if !check_collision():
-			print("idle land")
 			land_fx()
-		else:
-			print("idle coll")
 	
 	if state == States.WIN:
 		win_animation = true
@@ -69,11 +66,11 @@ func set_state(new_state: int):
 		%Camera2D.shaketense = 1
 		jump_start_pos = global_position
 		jump_end_pos = global_position + Vector2(0, Global.cell_size * 3)
-		animation_player.speed_scale = 1.05
+		animation_player.speed_scale = jump_duration * 2
 		animation_player.play("win")
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
-		tween.tween_method(jump, 0.0, 1.0, 1.0/animation_player.speed_scale)
+		tween.tween_method(jump, 0.0, 1.0, animation_player.speed_scale)
 		await tween.finished
 		win_animation = false
 		%Camera2D.zoom = Vector2(0.65, 0.65)
