@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addon
 [global_group]
 
 tilemap=""
+frog=""
 
 [input]
 

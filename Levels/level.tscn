@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b1ayi5u7573vq"]
+[gd_scene load_steps=11 format=4 uid="uid://b1ayi5u7573vq"]
 
 [ext_resource type="PackedScene" uid="uid://bu0rtkgtwhf3i" path="res://Frog/frog.tscn" id="1_s41d2"]
 [ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Levels/Elements/Driveway/driveway.tscn" id="2_gtnvv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6p4kkbjfb3j" path="res://Levels/foliage_map.tscn" id="6_8a2b0"]
 [ext_resource type="PackedScene" uid="uid://brjd62abuxr58" path="res://Levels/Elements/Goal/goal.tscn" id="7_8a2b0"]
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="8_ecu0b"]
+[ext_resource type="PackedScene" uid="uid://bk48cr44oauc4" path="res://Common/Interface/end_screen.tscn" id="8_vx8ih"]
 [ext_resource type="Script" uid="uid://b0f166r7wspys" path="res://Levels/logic/timer.gd" id="9_t2u7g"]
 
 [node name="TestLevel" type="Node2D"]
@@ -84,7 +85,7 @@ speed = 350
 direction = -1
 
 [node name="Goal" parent="Elements" instance=ExtResource("7_8a2b0")]
-cell = 2
+cell = 17
 
 [node name="Frog" parent="." instance=ExtResource("1_s41d2")]
 unique_name_in_owner = true
@@ -101,6 +102,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+
+[node name="End Screen" parent="CanvasLayer/Control" instance=ExtResource("8_vx8ih")]
+layout_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 visible = false
