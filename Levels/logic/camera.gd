@@ -26,5 +26,5 @@ func _process(_delta: float) -> void:
 		zoom = lerp(zoom, Vector2(0.95, 0.95), 0.08)
 	
 	if  %Frog.win_animation == true:
-		shaketense *= 79.8 * _delta
+		#shaketense *= 82 * _delta
 		zoom = lerp(zoom, Vector2(1.6, 1.6), 0.04)

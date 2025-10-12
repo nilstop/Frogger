@@ -84,7 +84,7 @@ speed = 350
 direction = -1
 
 [node name="Goal" parent="Elements" instance=ExtResource("7_8a2b0")]
-cell = 17
+cell = 2
 
 [node name="Frog" parent="." instance=ExtResource("1_s41d2")]
 unique_name_in_owner = true

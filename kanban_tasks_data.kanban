@@ -14,7 +14,8 @@
 				"b050b257-b4de-4d3b-9066-813c5c5b9742",
 				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
 				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
-				"64f756d1-7e79-4a86-8294-2bff3fa414d7"
+				"64f756d1-7e79-4a86-8294-2bff3fa414d7",
+				"0a7bc428-41cd-4156-9099-22cbcee93547"
 			]
 		},
 		{
@@ -103,6 +104,13 @@
 		{
 			"uuid": "64f756d1-7e79-4a86-8294-2bff3fa414d7",
 			"title": "Detect perfect clear",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "0a7bc428-41cd-4156-9099-22cbcee93547",
+			"title": "Fix icon.svg thing",
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []
