@@ -193,10 +193,10 @@ tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333, 1),
-"transitions": PackedFloat32Array(0.707107, 2.82843, 0.258816),
+"times": PackedFloat32Array(0, 0.433333, 1, 1.01),
+"transitions": PackedFloat32Array(0.707107, 2.82843, 0.258816, 1),
 "update": 0,
-"values": [Vector2(8, 8), Vector2(12, 12), Vector2(5, 5)]
+"values": [Vector2(8, 8), Vector2(12, 12), Vector2(5, 5), Vector2(8, 8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

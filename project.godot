@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Frogger"
-run/main_scene="uid://b1ayi5u7573vq"
+run/main_scene="uid://dmwi40ouajy25"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="uid://p80nqaojxxy"
 
 [autoload]
 
@@ -37,6 +37,9 @@ enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addon
 
 tilemap=""
 frog=""
+level=""
+pausemenu=""
+main_menu=""
 
 [input]
 

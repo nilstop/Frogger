@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4jje3hqdtfj4"]
+
+[ext_resource type="Script" uid="uid://dpmm1ogpi038b" path="res://Level/Elements/Element/ElementEntity.gd" id="1_o1hr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ao48"]
+size = Vector2(106, 100)
+
+[node name="ElementEntity" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_o1hr1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ao48")

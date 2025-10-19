@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://crkp04vxarhqr"]
+
+[ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Level/Elements/Element/element_entity.tscn" id="1_w4ad7"]
+
+[node name="Log" instance=ExtResource("1_w4ad7")]
+collision_layer = 8
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+region_rect = Rect2(0, 0, 25, 16)

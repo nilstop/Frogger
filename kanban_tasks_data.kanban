@@ -11,8 +11,6 @@
 			"uuid": "3cc55b8d-fc63-4a33-a2f8-54c2ecdafe80",
 			"title": "Todo",
 			"tasks": [
-				"b050b257-b4de-4d3b-9066-813c5c5b9742",
-				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
 				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
 				"64f756d1-7e79-4a86-8294-2bff3fa414d7",
 				"0a7bc428-41cd-4156-9099-22cbcee93547"
@@ -22,7 +20,10 @@
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
 			"tasks": [
-				"05d66e7c-9c8f-4842-8c5e-1705136ac126"
+				"bf165eb1-346e-42ec-8618-5e62c8f22f87",
+				"051e3b0d-5787-4123-b017-c4b85bc42f0e",
+				"273521f9-7393-4131-8b3a-315c3411983f",
+				"83ff2517-5363-4792-b73e-c746961481c5"
 			]
 		},
 		{
@@ -33,7 +34,10 @@
 				"5f3ce256-c621-4d23-9c68-39ef3fbc53dc",
 				"22cdeffd-108e-4a49-9123-d9c1e6514136",
 				"fae518b0-a748-4197-9056-b950237fd19e",
-				"401682c2-c50d-49bd-b2a7-b8879e266cf8"
+				"401682c2-c50d-49bd-b2a7-b8879e266cf8",
+				"05d66e7c-9c8f-4842-8c5e-1705136ac126",
+				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
+				"b050b257-b4de-4d3b-9066-813c5c5b9742"
 			]
 		}
 	],
@@ -111,6 +115,47 @@
 		{
 			"uuid": "0a7bc428-41cd-4156-9099-22cbcee93547",
 			"title": "Fix icon.svg thing",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "273521f9-7393-4131-8b3a-315c3411983f",
+			"title": "Pause button",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": [
+				{
+					"details": "resume",
+					"done": false
+				},
+				{
+					"details": "quit to menu",
+					"done": false
+				},
+				{
+					"details": "level highscore",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "83ff2517-5363-4792-b73e-c746961481c5",
+			"title": "Quit to main menu",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "bf165eb1-346e-42ec-8618-5e62c8f22f87",
+			"title": "Highscore storing",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "051e3b0d-5787-4123-b017-c4b85bc42f0e",
+			"title": "Viewing highscores in main menu",
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []

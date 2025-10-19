@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://c65ep5sqrooge"]
+
+[ext_resource type="Texture2D" uid="uid://cmrg5swy2cswq" path="res://Common/Interface/Rect.png" id="1_8a5s4"]
+[ext_resource type="Script" uid="uid://h1ubk0sd1kbi" path="res://Common/Interface/pause_menu.gd" id="1_ejkor"]
+[ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="1_irnng"]
+[ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="2_ejkor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jvtn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2dry"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3uv4"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(54, 18, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1ra3"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(54, 36, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72t2b"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(54, 0, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_86skp"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(36, 18, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4wgyj"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(36, 36, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggssa"]
+texture = ExtResource("1_irnng")
+region_rect = Rect2(36, 0, 18, 18)
+
+[node name="PauseMenu" type="Control" groups=["pausemenu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejkor")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(512, 369.695)
+layout_mode = 2
+texture = ExtResource("1_8a5s4")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_ejkor")
+theme_override_font_sizes/font_size = 32
+text = "PAUSED"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 13
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5jvtn")
+
+[node name="Highscore" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ejkor")
+theme_override_font_sizes/font_size = 16
+text = "LEVEL HIGHSCORE: 0.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Quit to menu" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("2_ejkor")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y2dry")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h3uv4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ra3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_72t2b")
+
+[node name="Resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("2_ejkor")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y2dry")
+theme_override_styles/hover = SubResource("StyleBoxTexture_86skp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4wgyj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ggssa")
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Quit to menu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]

@@ -1,6 +1,8 @@
 extends Area2D
 
 signal frog_death
+signal timer_end
+signal end
 signal first_input
 signal start
 
@@ -72,6 +74,7 @@ func set_state(new_state: int):
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, jump_duration * 2)
 		await tween.finished
+		emit_signal("end")
 		win_animation = false
 		%Camera2D.zoom = Vector2(0.65, 0.65)
 		hide()
@@ -85,7 +88,7 @@ func _ready() -> void:
 	global_position = game_start_pos
 
 func _physics_process(delta: float) -> void:
-	if state != States.DEAD and state != States.WIN:
+	if state != States.DEAD and state != States.WIN and %PauseMenu.paused == false:
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
 			set_state(States.JUMP)
@@ -99,11 +102,12 @@ func _physics_process(delta: float) -> void:
 				collision_action(check_collision())
 	
 	if Input.is_action_just_pressed("debug_reset"):
-		emit_signal("start")
-		rotation = deg_to_rad(0.0)
-		global_position = game_start_pos
-		show()
-		set_state(States.IDLE)
+		if state != States.JUMP and win_animation == false:
+			emit_signal("start")
+			rotation = deg_to_rad(0.0)
+			global_position = game_start_pos
+			show()
+			set_state(States.IDLE)
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
@@ -124,18 +128,21 @@ func check_collision():
 
 
 func collision_action(action: String):
-	emit_signal("frog_death")
+	emit_signal("timer_end")
 	if action == "roadkill":
 		hide()
 		set_state(States.DEAD)
+		emit_signal("frog_death")
 	elif action == "drowned":
 		hide()
 		inst(death_fx, "death_fx")
 		set_state(States.DEAD)
+		emit_signal("frog_death")
 	elif action == "win":
 		set_state(States.WIN)
 	else:
 		set_state(States.IDLE)
+	
 
 
 func inst(scene : PackedScene, type : String):
@@ -148,5 +155,5 @@ func inst(scene : PackedScene, type : String):
 
 func land_fx():
 	inst(land_particles, "land_particles")
-	%Camera2D.shaketense += 400.0
+	%Camera2D.shaketense += 300.0
 	%Camera2D.zoom = Vector2(0.9, 0.9)
