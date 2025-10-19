@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://pc6j1j3bu5tr"]
+[gd_scene load_steps=4 format=3 uid="uid://pc6j1j3bu5tr"]
 
 [ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_quyor"]
 [ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="2_6flb8"]
+[ext_resource type="PackedScene" uid="uid://uwkymhutksdn" path="res://Level/Elements/River/river.tscn" id="3_ar1a7"]
 
 [node name="Level" instance=ExtResource("1_quyor")]
 
 [node name="Goal" parent="Elements" index="0"]
-cell = 15
+cell = 4
 
 [node name="Driveway" parent="Elements" index="1" instance=ExtResource("2_6flb8")]
 cell = 3
@@ -14,4 +15,8 @@ frequency_seconds = 2.0
 speed = 300
 direction = 1
 
-[node name="PauseMenu" parent="CanvasLayer/Control/MarginContainer" index="0" groups=["pausemenu"]]
+[node name="River" parent="Elements" index="2" instance=ExtResource("3_ar1a7")]
+cell = 2
+frequency_seconds = 0.5
+speed = 400
+direction = -1

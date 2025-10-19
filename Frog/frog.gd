@@ -17,6 +17,7 @@ signal start
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
+@onready var pause_menu: Control = %PauseMenu
 
 @export var death_fx : PackedScene
 @export var land_particles : PackedScene
@@ -97,7 +98,8 @@ func _physics_process(delta: float) -> void:
 	if state != States.DEAD and state != States.WIN:
 	#check collision when state is idle
 		if state == States.IDLE:
-			global_position.x += log_velocity * delta
+			if pause_menu.paused == false:
+				global_position.x += log_velocity * delta
 			if check_collision():
 				collision_action(check_collision())
 	

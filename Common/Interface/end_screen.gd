@@ -2,12 +2,15 @@ extends Control
 
 
 
-@onready var input_message: Label = $VBoxContainer/InputMessage
-@onready var case: Label = $VBoxContainer/Case
+@onready var input_message: Label = $MarginContainer/VBoxContainer/InputMessage
+@onready var case: Label = $MarginContainer/VBoxContainer/Case
 @onready var timer: Timer = $Timer
 @onready var disappeartimer: Timer = $DisappearTimer
-@onready var h_separator: HSeparator = $VBoxContainer/HSeparator
+@onready var h_separator: HSeparator = $MarginContainer/VBoxContainer/HSeparator
 @onready var pause_menu: Control = %PauseMenu
+@onready var buttons: HBoxContainer = $MarginContainer/Buttons
+@onready var next_level: VBoxContainer = $"MarginContainer/Buttons/Next Level"
+
 
 
 var frog
@@ -18,6 +21,7 @@ func _ready() -> void:
 	frog = get_tree().get_first_node_in_group("frog")
 	frog.connect("frog_death", appear)
 	frog.connect("end", appear)
+	buttons.hide()
 	case.hide()
 	input_message.hide()
 
@@ -37,19 +41,24 @@ func appear():
 	if frog.state == frog.States.WIN:
 		case.text = "LEVEL CLEARED"
 		input_message.text = "PRESS ENTER TO REPLAY"
+		next_level.visible = true
+		
 	else:
 		case.text = "FAILED"
 		input_message.text = "PRESS ENTER TO RETRY"
+		next_level.visible = false
 	h_separator.add_theme_constant_override("separation", 110)
 	timer.wait_time = 0.3
 	timer.start()
 	death_screen = true
+	buttons.show()
 	case.show()
 	input_message.show()
 
 func disappear():
 	h_separator.add_theme_constant_override("separation", 174)
 	case.hide()
+	buttons.hide()
 	input_message.hide()
 	timer.wait_time = 0.05
 	timer.start()

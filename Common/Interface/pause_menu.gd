@@ -1,7 +1,5 @@
 extends Control
 
-signal quit
-
 @onready var end_screen: Control = %"End Screen"
 
 var paused := false

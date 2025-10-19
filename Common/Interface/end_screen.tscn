@@ -1,9 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk48cr44oauc4"]
+[gd_scene load_steps=13 format=3 uid="uid://bk48cr44oauc4"]
 
 [ext_resource type="Script" uid="uid://nwj3wb8ikgq4" path="res://Common/Interface/end_screen.gd" id="1_6xn34"]
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="1_odrot"]
+[ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="3_6xn34"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8ux4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2x83c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dxoyr"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(54, 18, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfwsl"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(54, 36, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gg6i4"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(54, 0, 18, 18)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xn34"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2x83c"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(36, 18, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u6lxl"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(36, 36, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofccf"]
+texture = ExtResource("3_6xn34")
+region_rect = Rect2(36, 0, 18, 18)
 
 [node name="End Screen" type="Control"]
 layout_mode = 3
@@ -12,23 +41,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_6xn34")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -297.0
-offset_right = 320.0
-offset_bottom = 297.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 230
 
-[node name="Case" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Case" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -41,12 +70,12 @@ theme_override_fonts/font = ExtResource("1_odrot")
 theme_override_font_sizes/font_size = 64
 text = "FAILED"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 110
 theme_override_styles/separator = SubResource("StyleBoxEmpty_j8ux4")
 
-[node name="InputMessage" type="Label" parent="VBoxContainer"]
+[node name="InputMessage" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -55,6 +84,74 @@ theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_odrot")
 theme_override_font_sizes/font_size = 32
 text = "PRESS ENTER TO RETRY"
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer"]
+z_index = 1000
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 41
+alignment = 1
+
+[node name="QuitToMenu" type="VBoxContainer" parent="MarginContainer/Buttons"]
+layout_mode = 2
+
+[node name="Quit to menu" type="Button" parent="MarginContainer/Buttons/QuitToMenu"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("1_odrot")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2x83c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dxoyr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pfwsl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gg6i4")
+
+[node name="Highscore" type="Label" parent="MarginContainer/Buttons/QuitToMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_odrot")
+theme_override_font_sizes/font_size = 16
+text = "QUIT
+TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next Level" type="VBoxContainer" parent="MarginContainer/Buttons"]
+layout_mode = 2
+
+[node name="NextLevelButton" type="Button" parent="MarginContainer/Buttons/Next Level"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("1_odrot")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6xn34")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2x83c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_u6lxl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofccf")
+
+[node name="Highscore" type="Label" parent="MarginContainer/Buttons/Next Level"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_odrot")
+theme_override_font_sizes/font_size = 16
+text = "NEXT
+LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
