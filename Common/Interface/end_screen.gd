@@ -40,6 +40,9 @@ func appear():
 	print(str(frog.state))
 	#If end screen is win screen
 	if frog.state == frog.States.WIN:
+		if Global.time < Global.highscores[Global.current_level - 1] or Global.highscores[Global.current_level - 1.0] == -1.0:
+			Global.highscores[Global.current_level - 1.0] = Global.time
+		print(Global.highscores)
 		case.text = "LEVEL CLEARED"
 		input_message.text = "PRESS ENTER TO REPLAY"
 		buttons.show()

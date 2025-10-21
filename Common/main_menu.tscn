@@ -67,8 +67,11 @@ layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
+[node name="Button1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Button1"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 16
@@ -81,8 +84,23 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_lm13x")
 theme_override_styles/normal = SubResource("StyleBoxTexture_80e4m")
 text = "1"
 
-[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
+[node name="Highscore" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Button1"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Button2"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 16
@@ -95,8 +113,23 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_lm13x")
 theme_override_styles/normal = SubResource("StyleBoxTexture_80e4m")
 text = "2"
 
-[node name="Level3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
+[node name="Highscore" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Button2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Button3"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 16
@@ -109,8 +142,23 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_lm13x")
 theme_override_styles/normal = SubResource("StyleBoxTexture_80e4m")
 text = "3"
 
-[node name="Level4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
+[node name="Highscore" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Button3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Button4"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 16
@@ -123,7 +171,19 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_lm13x")
 theme_override_styles/normal = SubResource("StyleBoxTexture_80e4m")
 text = "4"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
+[node name="Highscore" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Button4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button1/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button2/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button3/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button4/Level4" to="." method="_on_level_4_pressed"]

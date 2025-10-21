@@ -10,19 +10,39 @@ extends Control
 
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
 
+const LABEL_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Highscore"
+const BUTTON_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Level%d"
+
 func disable():
 	hide()
-	level_1.disabled = true
-	level_2.disabled = true
-	level_3.disabled = true
-	level_4.disabled = true
+	get_button(1).disabled = true
+	get_button(2).disabled = true
+	get_button(3).disabled = true
+	get_button(4).disabled = true
 
 func appear():
 	show()
-	level_1.disabled = false
-	level_2.disabled = false
-	level_3.disabled = false
-	level_4.disabled = false
+	get_button(1).disabled = false
+	get_button(2).disabled = false
+	get_button(3).disabled = false
+	get_button(4).disabled = false
+	labels()
+
+func get_button(button):
+	return get_node(BUTTON_PATH %[button, button])
+
+func get_label(label):
+	return get_node(LABEL_PATH %label)
+
+	#return load(BUTTON_PATH %[level, level])
+
+func labels():
+	for i in 4:
+		print(i)
+		if Global.highscores[i-1] != -1.00:
+			get_label(i+1).text = str(Global.highscores[i-1]).pad_decimals(2)
+		else:
+			get_label(i+1).text = "--"
 
 func inst(level):
 	var instance = level.instantiate()

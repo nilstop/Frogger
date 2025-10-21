@@ -111,7 +111,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_dxoyr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pfwsl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_gg6i4")
 
-[node name="Highscore" type="Label" parent="MarginContainer/Buttons/QuitToMenu"]
+[node name="Label" type="Label" parent="MarginContainer/Buttons/QuitToMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -140,7 +140,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_2x83c")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_u6lxl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofccf")
 
-[node name="Highscore" type="Label" parent="MarginContainer/Buttons/Next Level"]
+[node name="Label" type="Label" parent="MarginContainer/Buttons/Next Level"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
