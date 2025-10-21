@@ -4,7 +4,7 @@ extends Node2D
 
 
 @export var tilemap_atlas_coord : Vector2
-
+@export var goal := false
 
 var cell : int
 
@@ -16,11 +16,21 @@ func _ready() -> void:
 
 func set_map(width):
 	for ccell in width:
-		#tile if driveway
-		map.set_cell(map.local_to_map(global_position + Vector2(ccell * Global.cell_size,0)), 0, tilemap_atlas_coord)
-		map.set_cell(map.local_to_map(global_position - Vector2(ccell * Global.cell_size,0)), 0, tilemap_atlas_coord)
-		BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position + Vector2(ccell * Global.cell_size,0)))
-		BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position - Vector2(ccell * Global.cell_size,0)))
-		if tilemap_atlas_coord.y == 2.0:
-			Global.driveway_tiles.append(global_position + Vector2(ccell * Global.cell_size,0))
-			Global.driveway_tiles.append(global_position - Vector2(ccell * Global.cell_size,0))
+		#set tiles to the tilemap if it's a river or driveway
+		if goal == false:
+			map.set_cell(map.local_to_map(global_position + Vector2(ccell * Global.cell_size,0)), 0, tilemap_atlas_coord)
+			map.set_cell(map.local_to_map(global_position - Vector2(ccell * Global.cell_size,0)), 0, tilemap_atlas_coord)
+			BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position + Vector2(ccell * Global.cell_size,0)))
+			BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position - Vector2(ccell * Global.cell_size,0)))
+			if tilemap_atlas_coord.y == 2.0:
+				Global.driveway_tiles.append(global_position + Vector2(ccell * Global.cell_size,0))
+				Global.driveway_tiles.append(global_position - Vector2(ccell * Global.cell_size,0))
+		else:
+			for i in 5:
+				map.set_cell(map.local_to_map(global_position + Vector2(ccell * Global.cell_size,i * Global.cell_size)), 0, tilemap_atlas_coord)
+				map.set_cell(map.local_to_map(global_position - Vector2(ccell * Global.cell_size,i * Global.cell_size)), 0, tilemap_atlas_coord)
+				BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position + Vector2(ccell * Global.cell_size,i * Global.cell_size)))
+				BetterTerrain.update_terrain_cell(map,map.local_to_map(global_position - Vector2(ccell * Global.cell_size,i * Global.cell_size)))
+				if tilemap_atlas_coord.y == 2.0:
+					Global.driveway_tiles.append(global_position + Vector2(ccell * Global.cell_size,0))
+					Global.driveway_tiles.append(global_position - Vector2(ccell * Global.cell_size,0))

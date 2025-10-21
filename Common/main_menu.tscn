@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ygwtgkl02edx"]
+[gd_scene load_steps=8 format=3 uid="uid://ygwtgkl02edx"]
 
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="1_2o2ql"]
 [ext_resource type="Script" uid="uid://byf3vw2wgqki1" path="res://Common/main_menu.gd" id="1_lm13x"]
 [ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="1_onncr"]
-[ext_resource type="PackedScene" uid="uid://pc6j1j3bu5tr" path="res://Level/Levels/level1.tscn" id="2_rrbwj"]
-[ext_resource type="PackedScene" uid="uid://w2kcehl3tqpi" path="res://Level/Levels/level2.tscn" id="3_rrbwj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2o2ql"]
 
@@ -28,8 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lm13x")
-level1 = ExtResource("2_rrbwj")
-level2 = ExtResource("3_rrbwj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -129,3 +125,5 @@ text = "4"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]

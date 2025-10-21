@@ -38,11 +38,13 @@ func _process(delta: float) -> void:
 func appear():
 	disappearing = false
 	print(str(frog.state))
+	#If end screen is win screen
 	if frog.state == frog.States.WIN:
 		case.text = "LEVEL CLEARED"
 		input_message.text = "PRESS ENTER TO REPLAY"
 		buttons.show()
 		
+	#if end screen is death screen
 	else:
 		case.text = "FAILED"
 		input_message.text = "PRESS ENTER TO RETRY"

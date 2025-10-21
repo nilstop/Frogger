@@ -1,8 +1,5 @@
 extends Control
 
-@export var level1 : PackedScene
-@export var level2 : PackedScene
-
 @onready var world: Node2D = $"../.."
 
 
@@ -11,7 +8,7 @@ extends Control
 @onready var level_3: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level3
 @onready var level_4: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level4
 
-
+#HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
 
 func disable():
 	hide()
@@ -31,13 +28,19 @@ func inst(level):
 	var instance = level.instantiate()
 	world.add_child(instance)
 
-func _on_level_1_pressed() -> void:
-	Global.current_level = 1
-	inst(level1)
+func level(level : int):
+	Global.current_level = level
+	inst(load(Global.PATH_TO_LEVELS + "level%d" %level + ".tscn"))
 	disable()
 
+func _on_level_1_pressed() -> void:
+	level(1)
 
 func _on_level_2_pressed() -> void:
-	Global.current_level = 2
-	inst(level2)
-	disable()
+	level(2)
+
+func _on_level_3_pressed() -> void:
+	level(3)
+
+func _on_level_4_pressed() -> void:
+	level(4)
