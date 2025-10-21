@@ -47,11 +47,11 @@ tile_map_data = PackedByteArray("AAACAAIAAAAHAAEAAAABAAIAAAAHAAEAAAABAAMAAAAGAAE
 [node name="Goal" parent="Elements" instance=ExtResource("3_i5g78")]
 cell = 3
 
-[node name="FoliageMap" parent="." instance=ExtResource("4_q47le")]
-position = Vector2(0, -48)
-
 [node name="Frog" parent="." instance=ExtResource("5_dx36h")]
 unique_name_in_owner = true
+
+[node name="FoliageMap" parent="." instance=ExtResource("4_q47le")]
+position = Vector2(0, -48)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

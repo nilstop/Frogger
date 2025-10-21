@@ -13,7 +13,7 @@
 			"tasks": [
 				"0886aaf8-c6cf-44be-adfd-5803c6df8579",
 				"64f756d1-7e79-4a86-8294-2bff3fa414d7",
-				"0a7bc428-41cd-4156-9099-22cbcee93547"
+				"847abd27-3cf9-41ee-aec3-f0252b4137d1"
 			]
 		},
 		{
@@ -21,9 +21,7 @@
 			"title": "Doing",
 			"tasks": [
 				"bf165eb1-346e-42ec-8618-5e62c8f22f87",
-				"051e3b0d-5787-4123-b017-c4b85bc42f0e",
-				"273521f9-7393-4131-8b3a-315c3411983f",
-				"83ff2517-5363-4792-b73e-c746961481c5"
+				"051e3b0d-5787-4123-b017-c4b85bc42f0e"
 			]
 		},
 		{
@@ -37,7 +35,9 @@
 				"401682c2-c50d-49bd-b2a7-b8879e266cf8",
 				"05d66e7c-9c8f-4842-8c5e-1705136ac126",
 				"369db7ba-ace4-4007-ae0b-5a75421bdb0d",
-				"b050b257-b4de-4d3b-9066-813c5c5b9742"
+				"b050b257-b4de-4d3b-9066-813c5c5b9742",
+				"273521f9-7393-4131-8b3a-315c3411983f",
+				"83ff2517-5363-4792-b73e-c746961481c5"
 			]
 		}
 	],
@@ -113,13 +113,6 @@
 			"steps": []
 		},
 		{
-			"uuid": "0a7bc428-41cd-4156-9099-22cbcee93547",
-			"title": "Fix icon.svg thing",
-			"description": "",
-			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
-			"steps": []
-		},
-		{
 			"uuid": "273521f9-7393-4131-8b3a-315c3411983f",
 			"title": "Pause button",
 			"description": "",
@@ -127,15 +120,15 @@
 			"steps": [
 				{
 					"details": "resume",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "quit to menu",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "level highscore",
-					"done": false
+					"done": true
 				}
 			]
 		},
@@ -156,6 +149,13 @@
 		{
 			"uuid": "051e3b0d-5787-4123-b017-c4b85bc42f0e",
 			"title": "Viewing highscores in main menu",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
+		},
+		{
+			"uuid": "847abd27-3cf9-41ee-aec3-f0252b4137d1",
+			"title": "Die when out of bounds",
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []

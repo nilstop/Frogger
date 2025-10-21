@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://w2kcehl3tqpi"]
+
+[ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_hpv5k"]
+[ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="2_kkhul"]
+
+[node name="Level2" instance=ExtResource("1_hpv5k")]
+
+[node name="Driveway" parent="Elements" index="0" instance=ExtResource("2_kkhul")]
+cell = 2
+frequency_seconds = 0.5
+speed = 4000
+direction = -1
+
+[node name="Goal" parent="Elements" index="1"]
+cell = 5

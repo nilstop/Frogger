@@ -1,6 +1,7 @@
 extends Control
 
 @export var level1 : PackedScene
+@export var level2 : PackedScene
 
 @onready var world: Node2D = $"../.."
 
@@ -33,4 +34,10 @@ func inst(level):
 func _on_level_1_pressed() -> void:
 	Global.current_level = 1
 	inst(level1)
+	disable()
+
+
+func _on_level_2_pressed() -> void:
+	Global.current_level = 2
+	inst(level2)
 	disable()

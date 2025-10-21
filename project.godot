@@ -40,6 +40,7 @@ frog=""
 level=""
 pausemenu=""
 main_menu=""
+world=""
 
 [input]
 

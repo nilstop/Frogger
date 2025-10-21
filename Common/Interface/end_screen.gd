@@ -41,17 +41,16 @@ func appear():
 	if frog.state == frog.States.WIN:
 		case.text = "LEVEL CLEARED"
 		input_message.text = "PRESS ENTER TO REPLAY"
-		next_level.visible = true
+		buttons.show()
 		
 	else:
 		case.text = "FAILED"
 		input_message.text = "PRESS ENTER TO RETRY"
-		next_level.visible = false
+		buttons.hide()
 	h_separator.add_theme_constant_override("separation", 110)
 	timer.wait_time = 0.3
 	timer.start()
 	death_screen = true
-	buttons.show()
 	case.show()
 	input_message.show()
 
@@ -72,3 +71,11 @@ func _on_timer_timeout() -> void:
 func _on_disappear_timer_timeout() -> void:
 	death_screen = false
 	input_message.hide()
+
+
+func _on_quit_to_menu_pressed() -> void:
+	Global.quit_to_menu()
+
+func _on_next_level_button_pressed() -> void:
+	print(Global.PATH_TO_LEVELS + "level%d" %(Global.current_level + 1) + ".tscn")
+	Global.switch(Global.PATH_TO_LEVELS + "level%d" %(Global.current_level + 1) + ".tscn")
