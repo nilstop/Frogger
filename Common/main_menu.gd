@@ -1,17 +1,22 @@
 extends Control
 
 @onready var world: Node2D = $"../.."
+@onready var camera_2d: Camera2D = $"../../Camera2D"
+@onready var layers: Node2D = $"../../Layers"
+@onready var sea: Parallax2D = $"../../Layers/Sea"
+@onready var foliage: Parallax2D = $"../../Layers/Foliage"
 
 
-@onready var level_1: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level1
-@onready var level_2: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level2
-@onready var level_3: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level3
-@onready var level_4: Button = $MarginContainer/VBoxContainer/HBoxContainer/Level4
+
+
 
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
 
 const LABEL_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Highscore"
 const BUTTON_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Level%d"
+
+func _ready() -> void:
+	camera_2d.make_current()
 
 func disable():
 	hide()
@@ -19,6 +24,7 @@ func disable():
 	get_button(2).disabled = true
 	get_button(3).disabled = true
 	get_button(4).disabled = true
+	layers.hide()
 
 func appear():
 	show()
@@ -26,6 +32,8 @@ func appear():
 	get_button(2).disabled = false
 	get_button(3).disabled = false
 	get_button(4).disabled = false
+	layers.show()
+	camera_2d.make_current()
 	labels()
 
 func get_button(button):
@@ -38,9 +46,8 @@ func get_label(label):
 
 func labels():
 	for i in 4:
-		print(i)
-		if Global.highscores[i-1] != -1.00:
-			get_label(i+1).text = str(Global.highscores[i-1]).pad_decimals(2)
+		if Global.highscores[i] != -1.00:
+			get_label(i+1).text = str(Global.highscores[i]).pad_decimals(2)
 		else:
 			get_label(i+1).text = "--"
 
@@ -52,6 +59,11 @@ func level(level : int):
 	Global.current_level = level
 	inst(load(Global.PATH_TO_LEVELS + "level%d" %level + ".tscn"))
 	disable()
+
+func _process(delta: float) -> void:
+	if Global.current_level == -1:
+		sea.scroll_offset = get_viewport().get_mouse_position()
+		foliage.scroll_offset = get_viewport().get_mouse_position()
 
 func _on_level_1_pressed() -> void:
 	level(1)

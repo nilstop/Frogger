@@ -16,7 +16,7 @@ signal start
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var game_start_pos := Vector2(get_viewport_rect().size.x/2.0, get_viewport_rect().size.y - Global.cell_size/2.0)
+@onready var game_start_pos := Vector2(Global.screen_rect.x/2, Global.screen_rect.y - Global.cell_size/2.0)
 @onready var pause_menu: Control = %PauseMenu
 
 @export var death_fx : PackedScene
@@ -75,6 +75,7 @@ func set_state(new_state: int):
 		var tween = create_tween()
 		tween.tween_method(jump, 0.0, 1.0, jump_duration * 2)
 		await tween.finished
+		global_position.x = game_start_pos.x
 		emit_signal("end")
 		win_animation = false
 		%Camera2D.zoom = Vector2(0.65, 0.65)
@@ -90,6 +91,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state != States.DEAD and state != States.WIN and %PauseMenu.paused == false:
+		
+			
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
 			set_state(States.JUMP)
@@ -113,9 +116,11 @@ func _physics_process(delta: float) -> void:
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
-	if has_overlapping_areas():
+	if global_position.x < Global.level_width * Global.cell_size and global_position.x < -Global.level_width * Global.cell_size:
+		return "out of bounds"
+	elif has_overlapping_areas():
 		return "roadkill"
-	if goal_area.has_overlapping_areas():
+	elif goal_area.has_overlapping_areas():
 		return "win"
 	if river_area.has_overlapping_areas():
 		if log_area.has_overlapping_areas():
@@ -138,6 +143,10 @@ func collision_action(action: String):
 	elif action == "drowned":
 		hide()
 		inst(death_fx, "death_fx")
+		set_state(States.DEAD)
+		emit_signal("frog_death")
+	elif action == "out of bounds":
+		hide()
 		set_state(States.DEAD)
 		emit_signal("frog_death")
 	elif action == "win":
