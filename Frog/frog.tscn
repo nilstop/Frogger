@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=17 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="PackedScene" uid="uid://b1ssjgqt4r72u" path="res://Frog/Effects/death_fx.tscn" id="2_gt6fl"]
@@ -241,6 +241,9 @@ size = Vector2(108, 84)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoul2"]
 size = Vector2(32, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw4w0"]
+size = Vector2(128, 98)
+
 [node name="Frog" type="Area2D" groups=["frog"]]
 collision_mask = 2
 script = ExtResource("1_ignkv")
@@ -296,5 +299,11 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LogArea"]
 shape = SubResource("RectangleShape2D_uoul2")
 debug_color = Color(0.998193, 0, 0.14824, 0.42)
+
+[node name="TrainArea" type="Area2D" parent="."]
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrainArea"]
+shape = SubResource("RectangleShape2D_tw4w0")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

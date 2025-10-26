@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://brjd62abuxr58"]
 
-[ext_resource type="PackedScene" uid="uid://vvc1vxwwihbl" path="res://Level/Elements/Element/map_and_pos.tscn" id="1_ebref"]
+[ext_resource type="PackedScene" uid="uid://vvc1vxwwihbl" path="res://Level/logic/Element/map_and_pos.tscn" id="1_ebref"]
 [ext_resource type="Script" uid="uid://blnl38x7c7le2" path="res://Level/Elements/Goal/goal.gd" id="1_nm1hf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrn6q"]

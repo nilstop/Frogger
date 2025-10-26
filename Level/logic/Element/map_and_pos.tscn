@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vvc1vxwwihbl"]
 
-[ext_resource type="Script" uid="uid://dhevv172fouia" path="res://Level/Elements/Element/tile_map_script.gd" id="1_1oq2a"]
+[ext_resource type="Script" uid="uid://dhevv172fouia" path="res://Level/logic/Element/tile_map_script.gd" id="1_1oq2a"]
 
 [node name="TileMapScript" type="Node2D"]
 script = ExtResource("1_1oq2a")

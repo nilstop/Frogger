@@ -13,6 +13,8 @@ signal start
 @onready var log_area: Area2D = $LogArea
 @onready var river_area: Area2D = $RiverArea
 @onready var goal_area: Area2D = $GoalArea
+@onready var train_area: Area2D = $TrainArea
+
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -105,6 +107,9 @@ func _physics_process(delta: float) -> void:
 				global_position.x += log_velocity * delta
 			if check_collision():
 				collision_action(check_collision())
+	if state == States.JUMP or state == States.IDLE:
+		if train_area.has_overlapping_areas():
+			collision_action(check_collision())
 	
 	if Input.is_action_just_pressed("debug_reset"):
 		if state != States.JUMP and win_animation == false:
@@ -117,7 +122,9 @@ func _physics_process(delta: float) -> void:
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
 	if global_position.x < Global.level_width * Global.cell_size and global_position.x < -Global.level_width * Global.cell_size:
-		return "out of bounds"
+		return "out of bounds"	
+	if train_area.has_overlapping_areas():
+		return "railkill"
 	elif has_overlapping_areas():
 		return "roadkill"
 	elif goal_area.has_overlapping_areas():
@@ -131,24 +138,23 @@ func check_collision():
 	else:
 		log_velocity = 0
 		return
-	
 
+func basic_death():
+	hide()
+	set_state(States.DEAD)
+	emit_signal("frog_death")
 
 func collision_action(action: String):
 	emit_signal("timer_end")
 	if action == "roadkill":
-		hide()
-		set_state(States.DEAD)
-		emit_signal("frog_death")
+		basic_death()
+	elif action == "railkill":
+		basic_death()
 	elif action == "drowned":
-		hide()
 		inst(death_fx, "death_fx")
-		set_state(States.DEAD)
-		emit_signal("frog_death")
+		basic_death()
 	elif action == "out of bounds":
-		hide()
-		set_state(States.DEAD)
-		emit_signal("frog_death")
+		basic_death()
 	elif action == "win":
 		set_state(States.WIN)
 	else:

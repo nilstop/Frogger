@@ -3,8 +3,8 @@ extends Control
 @onready var world: Node2D = $"../.."
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 @onready var layers: Node2D = $"../../Layers"
-@onready var sea: Parallax2D = $"../../Layers/Sea"
-@onready var foliage: Parallax2D = $"../../Layers/Foliage"
+@onready var sea: TileMapLayer = $"../../SeaLayer"
+@onready var foliage: TileMapLayer = $"../../FoliageLayer"
 
 
 
@@ -24,6 +24,7 @@ func disable():
 	get_button(2).disabled = true
 	get_button(3).disabled = true
 	get_button(4).disabled = true
+	await get_tree().process_frame
 	layers.hide()
 
 func appear():
@@ -59,12 +60,6 @@ func level(level : int):
 	Global.current_level = level
 	inst(load(Global.PATH_TO_LEVELS + "level%d" %level + ".tscn"))
 	disable()
-
-func _process(delta: float) -> void:
-	if Global.current_level == -1:
-		sea.scroll_offset = get_viewport().get_mouse_position()
-		foliage.scroll_offset = get_viewport().get_mouse_position()
-
 func _on_level_1_pressed() -> void:
 	level(1)
 

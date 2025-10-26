@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://uwkymhutksdn"]
 
-[ext_resource type="Script" uid="uid://vk4h8j6c461c" path="res://Level/Elements/Element/element.gd" id="1_4rj44"]
+[ext_resource type="Script" uid="uid://vk4h8j6c461c" path="res://Level/logic/Element/element.gd" id="1_4rj44"]
 [ext_resource type="PackedScene" uid="uid://crkp04vxarhqr" path="res://Level/Elements/River/log.tscn" id="2_tln4j"]
 [ext_resource type="Texture2D" uid="uid://drumkglfvqvy7" path="res://Level/Elements/River/log14.png" id="3_cswxx"]
-[ext_resource type="PackedScene" uid="uid://vvc1vxwwihbl" path="res://Level/Elements/Element/map_and_pos.tscn" id="4_cswxx"]
+[ext_resource type="PackedScene" uid="uid://vvc1vxwwihbl" path="res://Level/logic/Element/map_and_pos.tscn" id="4_cswxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4rj44"]
 size = Vector2(4126, 128)

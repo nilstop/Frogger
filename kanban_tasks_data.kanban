@@ -18,7 +18,9 @@
 		{
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"b31c6e82-fa93-421d-b582-a973fc28615b"
+			]
 		},
 		{
 			"uuid": "d3ebedf8-f4d3-4a10-9303-78a84ab6a618",
@@ -158,6 +160,22 @@
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []
+		},
+		{
+			"uuid": "b31c6e82-fa93-421d-b582-a973fc28615b",
+			"title": "Rail",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": [
+				{
+					"details": "train sprite",
+					"done": false
+				},
+				{
+					"details": "train logic",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

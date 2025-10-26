@@ -92,6 +92,7 @@ theme_override_fonts/font = ExtResource("8_luomk")
 theme_override_font_sizes/font_size = 64
 text = "0.00"
 horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("9_k8npl")
 
 [node name="PauseMarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
