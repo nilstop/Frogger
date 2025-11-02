@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2opoaddkoofs"]
+[gd_scene load_steps=3 format=3 uid="uid://c2opoaddkoofs"]
 
 [ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Level/logic/Element/element_entity.tscn" id="1_7s11n"]
+[ext_resource type="Texture2D" uid="uid://rhm7kneq36y0" path="res://Level/Elements/Railway/train.png" id="2_2o7ic"]
 
 [node name="Train" instance=ExtResource("1_7s11n")]
 collision_layer = 32
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2o7ic")

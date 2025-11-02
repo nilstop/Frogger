@@ -5,6 +5,8 @@ extends Control
 @onready var layers: Node2D = $"../../Layers"
 @onready var sea: TileMapLayer = $"../../SeaLayer"
 @onready var foliage: TileMapLayer = $"../../FoliageLayer"
+@onready var load_sfx: AudioStreamPlayer2D = $"../../LoadSfx"
+
 
 
 
@@ -57,9 +59,11 @@ func inst(level):
 	world.add_child(instance)
 
 func level(level : int):
+	load_sfx.play()
 	Global.current_level = level
 	inst(load(Global.PATH_TO_LEVELS + "level%d" %level + ".tscn"))
 	disable()
+
 func _on_level_1_pressed() -> void:
 	level(1)
 

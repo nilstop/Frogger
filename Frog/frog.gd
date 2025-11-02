@@ -14,17 +14,23 @@ signal start
 @onready var river_area: Area2D = $RiverArea
 @onready var goal_area: Area2D = $GoalArea
 @onready var train_area: Area2D = $TrainArea
-
-
+#AudioStreamPlayers
+@onready var jump_sfx: AudioStreamPlayer2D = $JumpSfx
+@onready var land_sfx: AudioStreamPlayer2D = $LandSfx
+@onready var win_sfx: AudioStreamPlayer2D = $WinSfx
+@onready var drown_sfx: AudioStreamPlayer2D = $DrownSfx
+@onready var hit_sfx: AudioStreamPlayer2D = $HitSfx
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(Global.screen_rect.x/2, Global.screen_rect.y - Global.cell_size/2.0)
 @onready var pause_menu: Control = %PauseMenu
 
+#animation related
 @export var death_fx : PackedScene
 @export var land_particles : PackedScene
 @export var jump_duration : float
 @export var jump_curve : Curve
+@export var win_anim_duration : float = jump_duration * 2
 
 enum States {JUMP, IDLE, DEAD, WIN}
 
@@ -41,6 +47,7 @@ func set_state(new_state: int):
 		emit_signal("first_input")
 		jump_start_pos = global_position
 		jump_end_pos = global_position + Vector2(0, Global.cell_size)
+		jump_sfx.play()
 		#diagonal jumping
 		if Input.is_action_pressed("left"):
 			jump_end_pos += Vector2(Global.cell_size,0)
@@ -51,6 +58,7 @@ func set_state(new_state: int):
 		else:
 			animation_player.play("jump")
 			rotation = 0
+		#animation
 		animation_player.speed_scale = 1.0 / jump_duration
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
@@ -63,10 +71,12 @@ func set_state(new_state: int):
 	
 	if state == States.IDLE:
 		if !check_collision():
+			land_sfx.play()
 			land_fx()
 	
 	if state == States.WIN:
 		win_animation = true
+		win_sfx.play()
 		inst(land_particles, "land_particles")
 		%Camera2D.shaketense = 1
 		jump_start_pos = global_position
@@ -147,10 +157,13 @@ func basic_death():
 func collision_action(action: String):
 	emit_signal("timer_end")
 	if action == "roadkill":
+		hit_sfx.play()
 		basic_death()
 	elif action == "railkill":
+		hit_sfx.play()
 		basic_death()
 	elif action == "drowned":
+		drown_sfx.play()
 		inst(death_fx, "death_fx")
 		basic_death()
 	elif action == "out of bounds":

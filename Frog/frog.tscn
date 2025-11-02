@@ -1,9 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=22 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="PackedScene" uid="uid://b1ssjgqt4r72u" path="res://Frog/Effects/death_fx.tscn" id="2_gt6fl"]
 [ext_resource type="Texture2D" uid="uid://cb5e5hkdf5" path="res://Frog/frog2.png" id="2_ignkv"]
 [ext_resource type="PackedScene" uid="uid://5pnktr6wfxhj" path="res://Frog/Effects/frog_particles.tscn" id="2_uoul2"]
+[ext_resource type="AudioStream" uid="uid://berdij6upv72h" path="res://Common/Audio/Jump.wav" id="5_jeqqi"]
+[ext_resource type="AudioStream" uid="uid://bvne53l3wlm37" path="res://Common/Audio/Land.wav" id="6_w1u87"]
+[ext_resource type="AudioStream" uid="uid://ccihwj2i4o7ya" path="res://Common/Audio/Win.wav" id="7_8bd7q"]
+[ext_resource type="AudioStream" uid="uid://4uah6fdyqjr5" path="res://Common/Audio/Drown.wav" id="8_vhoxf"]
+[ext_resource type="AudioStream" uid="uid://bino5s1nidmo0" path="res://Common/Audio/Hit.wav" id="9_w1u87"]
 
 [sub_resource type="Curve" id="Curve_uoul2"]
 _data = [Vector2(0, 0), 0.0, 2.40041, 0, 0, Vector2(1, 1), -0.422472, 0.0, 0, 0]
@@ -251,6 +256,7 @@ death_fx = ExtResource("2_gt6fl")
 land_particles = ExtResource("2_uoul2")
 jump_duration = 0.45
 jump_curve = SubResource("Curve_uoul2")
+win_anim_duration = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(8, 8)
@@ -305,5 +311,27 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainArea"]
 shape = SubResource("RectangleShape2D_tw4w0")
+
+[node name="JumpSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jeqqi")
+volume_db = 8.0
+
+[node name="LandSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_w1u87")
+volume_db = 8.0
+
+[node name="WinSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8bd7q")
+volume_db = 8.0
+
+[node name="DrownSfx" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("8_vhoxf")
+volume_db = 8.0
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("9_w1u87")
+volume_db = 6.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
