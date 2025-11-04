@@ -5,6 +5,7 @@ signal timer_end
 signal end
 signal first_input
 signal start
+signal win
 
 #debugging label
 @onready var label: Label = $Label
@@ -40,10 +41,16 @@ var jump_end_pos : Vector2
 var log_velocity : int
 var win_animation := false
 
+var tweens := [Tween]
+
 func set_state(new_state: int):
+	if state == States.WIN and new_state == States.WIN:
+		return
 	state = new_state
 	
 	if state == States.JUMP:
+		z_as_relative = false
+		z_index = 500
 		emit_signal("first_input")
 		jump_start_pos = global_position
 		jump_end_pos = global_position + Vector2(0, Global.cell_size)
@@ -62,19 +69,29 @@ func set_state(new_state: int):
 		animation_player.speed_scale = 1.0 / jump_duration
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
+		tweens.append(tween)
 		tween.tween_method(jump, 0.0, 1.0, jump_duration)
 		await tween.finished
-		if check_collision():
-			collision_action(check_collision())
-		else:
-			set_state(States.IDLE)
+		tweens.clear()
+		z_as_relative = true
+		z_index = 0
+		
+		if state != States.DEAD:
+			if check_collision():
+				print("COLLISION")
+				collision_action(check_collision())
+			else:
+				set_state(States.IDLE)
 	
 	if state == States.IDLE:
 		if !check_collision():
 			land_sfx.play()
 			land_fx()
 	
+	
 	if state == States.WIN:
+		print("emit win")
+		emit_signal("win")
 		win_animation = true
 		win_sfx.play()
 		inst(land_particles, "land_particles")
@@ -103,8 +120,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state != States.DEAD and state != States.WIN and %PauseMenu.paused == false:
-		
-			
 		#jump when jump buttons pressed
 		if Input.is_action_pressed("Jump") and state != States.JUMP:
 			set_state(States.JUMP)
@@ -112,15 +127,17 @@ func _physics_process(delta: float) -> void:
 	#label.text = str(state)
 	if state != States.DEAD and state != States.WIN:
 	#check collision when state is idle
+		if train_area.has_overlapping_areas():
+			collision_action(check_collision())
 		if state == States.IDLE:
 			if pause_menu.paused == false:
 				global_position.x += log_velocity * delta
+			
 			if check_collision():
+				print("COLLISION")
 				collision_action(check_collision())
-	if state == States.JUMP or state == States.IDLE:
-		if train_area.has_overlapping_areas():
-			collision_action(check_collision())
-	
+
+
 	if Input.is_action_just_pressed("debug_reset"):
 		if state != States.JUMP and win_animation == false:
 			emit_signal("start")
@@ -155,24 +172,30 @@ func basic_death():
 	emit_signal("frog_death")
 
 func collision_action(action: String):
-	emit_signal("timer_end")
-	if action == "roadkill":
-		hit_sfx.play()
-		basic_death()
-	elif action == "railkill":
-		hit_sfx.play()
-		basic_death()
-	elif action == "drowned":
-		drown_sfx.play()
-		inst(death_fx, "death_fx")
-		basic_death()
-	elif action == "out of bounds":
-		basic_death()
-	elif action == "win":
-		set_state(States.WIN)
+	print("collision action")
+	if state == States.DEAD or state == States.WIN:
+		return
 	else:
-		set_state(States.IDLE)
-	
+		if tweens.size():
+			tweens[0].stop()
+		emit_signal("timer_end")
+		if action == "roadkill":
+			hit_sfx.play()
+			basic_death()
+		elif action == "railkill":
+			hit_sfx.play()
+			basic_death()
+		elif action == "drowned":
+			drown_sfx.play()
+			inst(death_fx, "death_fx")
+			basic_death()
+		elif action == "out of bounds":
+			basic_death()
+		elif action == "win":
+			print("set_state_win")
+			set_state(States.WIN)
+		else:
+			set_state(States.IDLE)
 
 
 func inst(scene : PackedScene, type : String):

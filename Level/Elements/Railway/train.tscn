@@ -1,10 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2opoaddkoofs"]
+[gd_scene load_steps=9 format=3 uid="uid://c2opoaddkoofs"]
 
 [ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Level/logic/Element/element_entity.tscn" id="1_7s11n"]
-[ext_resource type="Texture2D" uid="uid://rhm7kneq36y0" path="res://Level/Elements/Railway/train.png" id="2_2o7ic"]
+[ext_resource type="Texture2D" uid="uid://c7ga7qsh8dbb" path="res://Level/Elements/Railway/locomotive.png" id="2_2o7ic"]
+[ext_resource type="Texture2D" uid="uid://dnkonbbnf4gi8" path="res://Level/Elements/Railway/steamparticles.png" id="3_yqvx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqvx4"]
+size = Vector2(72, 36)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yqvx4"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_yqvx4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.490683, 1), -0.321934, -0.321934, 0, 0, Vector2(0.991718, 0), -3.61957, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_prvpy"]
+curve = SubResource("Curve_yqvx4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h8kxw"]
+particle_flag_disable_z = true
+angle_min = -699.3
+angle_max = 720.0
+direction = Vector3(0.79, -1, 0)
+spread = 10.547
+initial_velocity_min = 262.95
+initial_velocity_max = 443.38
+angular_velocity_min = -35.93
+angular_velocity_max = 88.45
+gravity = Vector3(0, 0, 0)
+damping_min = 357.39
+damping_max = 483.685
+scale_min = 6.76
+scale_max = 6.76
+scale_curve = SubResource("CurveTexture_prvpy")
+anim_speed_min = 1.73
+anim_speed_max = 3.63
 
 [node name="Train" instance=ExtResource("1_7s11n")]
 collision_layer = 32
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -48)
 texture = ExtResource("2_2o7ic")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(33, -23)
+shape = SubResource("RectangleShape2D_yqvx4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
+z_index = 1000
+material = SubResource("CanvasItemMaterial_yqvx4")
+position = Vector2(140, -108)
+amount = 35
+texture = ExtResource("3_yqvx4")
+lifetime = 1.5
+visibility_rect = Rect2(-5070, -100, 10000, 200)
+process_material = SubResource("ParticleProcessMaterial_h8kxw")

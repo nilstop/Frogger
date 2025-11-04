@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://pc6j1j3bu5tr"]
+[gd_scene load_steps=5 format=3 uid="uid://pc6j1j3bu5tr"]
 
 [ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_quyor"]
 [ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="2_6flb8"]
 [ext_resource type="PackedScene" uid="uid://uwkymhutksdn" path="res://Level/Elements/River/river.tscn" id="3_ar1a7"]
+[ext_resource type="PackedScene" uid="uid://bkdl2dohnp4xh" path="res://Level/Elements/Railway/rail.tscn" id="4_epsfu"]
 
 [node name="Level" instance=ExtResource("1_quyor")]
 
 [node name="Goal" parent="Elements" index="0"]
-cell = 4
+cell = 10
 
 [node name="Driveway" parent="Elements" index="1" instance=ExtResource("2_6flb8")]
 cell = 3
@@ -19,4 +20,23 @@ direction = 1
 cell = 2
 frequency_seconds = 0.4
 speed = 500
+direction = -1
+
+[node name="Rail" parent="Elements" index="3" instance=ExtResource("4_epsfu")]
+position = Vector2(0, -1)
+cell = 5
+frequency_seconds = 2.0
+speed = 700
+direction = -1
+
+[node name="River2" parent="Elements" index="4" instance=ExtResource("3_ar1a7")]
+cell = 6
+frequency_seconds = 1.0
+speed = 400
+direction = 1
+
+[node name="River3" parent="Elements" index="5" instance=ExtResource("3_ar1a7")]
+cell = 7
+frequency_seconds = 1.0
+speed = 400
 direction = -1

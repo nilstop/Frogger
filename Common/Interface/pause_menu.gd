@@ -2,6 +2,7 @@ extends Control
 
 @onready var end_screen: Control = %"End Screen"
 
+
 var paused := false
 
 func _ready() -> void:

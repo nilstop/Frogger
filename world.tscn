@@ -31,6 +31,6 @@ tile_map_data = PackedByteArray("AAD9/wUAAAAEAAEAAAD+/wUAAAAEAAEAAAD8/wUAAAAEAAE
 stream = ExtResource("4_aqk2v")
 autoplay = true
 
-[node name="LoadSfx" type="AudioStreamPlayer2D" parent="."]
+[node name="LoadSfx" type="AudioStreamPlayer2D" parent="." groups=["loadsfx"]]
 stream = ExtResource("5_036b0")
 volume_db = 7.0

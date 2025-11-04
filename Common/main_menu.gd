@@ -3,8 +3,6 @@ extends Control
 @onready var world: Node2D = $"../.."
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 @onready var layers: Node2D = $"../../Layers"
-@onready var sea: TileMapLayer = $"../../SeaLayer"
-@onready var foliage: TileMapLayer = $"../../FoliageLayer"
 @onready var load_sfx: AudioStreamPlayer2D = $"../../LoadSfx"
 
 

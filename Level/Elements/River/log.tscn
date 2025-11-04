@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Level/logic/Element/element_entity.tscn" id="1_w4ad7"]
 
 [node name="Log" instance=ExtResource("1_w4ad7")]
+z_index = -750
+z_as_relative = false
 collision_layer = 8
 
 [node name="Sprite2D" parent="." index="0"]

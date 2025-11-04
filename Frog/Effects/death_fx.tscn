@@ -54,6 +54,8 @@ _data = {
 }
 
 [node name="DeathFx" type="Node2D"]
+z_index = 1000
+z_as_relative = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

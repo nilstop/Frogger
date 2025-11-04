@@ -13,10 +13,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	#(frog.global_position.x - default_x_pos) / Global.camera_x_divide + default_x_pos
 	global_position = Vector2(default_x_pos, frog.global_position.y)
-	print(global_position.x)
 	global_position.x += (frog.global_position.x - default_x_pos) / Global.camera_x_divide
-	print(global_position.y)
-	print(frog.global_position.x - default_x_pos)
 	global_position += shake_pos
 	
 	if wrap(Engine.get_frames_drawn(), 0 ,2) == 0 and shaketense > 5:

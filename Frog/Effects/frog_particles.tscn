@@ -9,6 +9,8 @@ _data = [Vector2(0, 1), 0.0, -0.988764, 0, 0, Vector2(0.784091, 0.247191), -0.77
 point_count = 3
 
 [node name="FrogParticles" type="Node2D"]
+z_index = -500
+z_as_relative = false
 script = ExtResource("1_k873k")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

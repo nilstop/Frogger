@@ -41,6 +41,7 @@ level=""
 pausemenu=""
 main_menu=""
 world=""
+loadsfx=""
 
 [input]
 

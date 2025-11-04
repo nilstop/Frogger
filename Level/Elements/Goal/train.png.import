@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8c342bl0opmo"
-path="res://.godot/imported/tileset.png-fa04d5c340084417d3b45a039bf5f47f.ctex"
+uid="uid://bytm0lq5sn5yk"
+path="res://.godot/imported/train.png-a517cb23dfff308f056bd5c4718b3326.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/logic/Element/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-fa04d5c340084417d3b45a039bf5f47f.ctex"]
+source_file="res://Level/Elements/Goal/train.png"
+dest_files=["res://.godot/imported/train.png-a517cb23dfff308f056bd5c4718b3326.ctex"]
 
 [params]
 
