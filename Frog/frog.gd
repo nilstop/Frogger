@@ -25,6 +25,7 @@ signal win
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_start_pos := Vector2(Global.screen_rect.x/2, Global.screen_rect.y - Global.cell_size/2.0)
 @onready var pause_menu: Control = %PauseMenu
+@onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
 
 #animation related
 @export var death_fx : PackedScene
@@ -33,9 +34,9 @@ signal win
 @export var jump_curve : Curve
 @export var win_anim_duration : float = jump_duration * 2
 
-enum States {JUMP, IDLE, DEAD, WIN}
+enum States {JUMP, IDLE, DEAD, WIN, LOADING}
 
-var state : States = States.IDLE: set = set_state 
+var state : States = States.LOADING: set = set_state 
 var jump_start_pos : Vector2
 var jump_end_pos : Vector2
 var log_velocity : int
@@ -114,37 +115,42 @@ func set_state(new_state: int):
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos.x - jump_start_pos.x,jump_end_pos.y - jump_start_pos.y)
 
-func _ready() -> void:
+func loading_done():
 	emit_signal("start")
+	set_state(States.IDLE)
+
+func _ready() -> void:
 	global_position = game_start_pos
+	loading_timer.connect("timeout", loading_done)
 
 func _physics_process(delta: float) -> void:
-	if state != States.DEAD and state != States.WIN and %PauseMenu.paused == false:
-		#jump when jump buttons pressed
-		if Input.is_action_pressed("Jump") and state != States.JUMP:
-			set_state(States.JUMP)
-	
-	#label.text = str(state)
-	if state != States.DEAD and state != States.WIN:
-	#check collision when state is idle
-		if train_area.has_overlapping_areas():
-			collision_action(check_collision())
-		if state == States.IDLE:
-			if pause_menu.paused == false:
-				global_position.x += log_velocity * delta
-			
-			if check_collision():
-				print("COLLISION")
+	if state != States.LOADING:
+		if state != States.DEAD and state != States.WIN and %PauseMenu.paused == false:
+			#jump when jump buttons pressed
+			if Input.is_action_pressed("Jump") and state != States.JUMP:
+				set_state(States.JUMP)
+		
+		#label.text = str(state)
+		if state != States.DEAD and state != States.WIN:
+		#check collision when state is idle
+			if train_area.has_overlapping_areas():
 				collision_action(check_collision())
+			if state == States.IDLE:
+				if pause_menu.paused == false:
+					global_position.x += log_velocity * delta
+				
+				if check_collision():
+					print("COLLISION")
+					collision_action(check_collision())
 
 
-	if Input.is_action_just_pressed("debug_reset"):
-		if state != States.JUMP and win_animation == false:
-			emit_signal("start")
-			rotation = deg_to_rad(0.0)
-			global_position = game_start_pos
-			show()
-			set_state(States.IDLE)
+		if Input.is_action_just_pressed("debug_reset"):
+			if state != States.JUMP and win_animation == false:
+				emit_signal("start")
+				rotation = deg_to_rad(0.0)
+				global_position = game_start_pos
+				show()
+				set_state(States.IDLE)
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():

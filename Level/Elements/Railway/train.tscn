@@ -57,5 +57,5 @@ position = Vector2(140, -108)
 amount = 35
 texture = ExtResource("3_yqvx4")
 lifetime = 1.5
-visibility_rect = Rect2(-5070, -100, 10000, 200)
+visibility_rect = Rect2(-7570, -300, 15000, 600)
 process_material = SubResource("ParticleProcessMaterial_h8kxw")

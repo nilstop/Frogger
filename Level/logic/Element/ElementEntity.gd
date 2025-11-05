@@ -21,6 +21,7 @@ var left_corner : float
 var right_corner : float
 
 func _ready() -> void:
+	if get_children().size() == 3: gpu_particles_2d = $GPUParticles2D
 	left_corner = -Global.camera_x_divide * Global.cell_size - Global.cell_size/2.0 * width_scale
 	right_corner = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + Global.cell_size/2.0 * width_scale
 	global_position.x = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale
@@ -28,11 +29,9 @@ func _ready() -> void:
 	collision_shape.scale.x = width_scale
 	if direction == 1:
 		global_position.x = -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale
-		
 	else:
 		sprite.flip_h = true
 		if get_children().size() == 3:
-			gpu_particles_2d = $GPUParticles2D
 			gpu_particles_2d.position.x *= -1
 			gpu_particles_2d.process_material.direction.x *= -1
 		

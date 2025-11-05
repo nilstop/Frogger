@@ -32,7 +32,7 @@ y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(640, -94)
+position = Vector2(640, 0)
 offset = Vector2(0, -170)
 zoom = Vector2(0.95, 0.95)
 limit_left = -768
@@ -102,7 +102,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_luomk")
 theme_override_font_sizes/font_size = 20
-text = "NEW HIGHSCORE!"
+text = "NEW FASTEST TIME!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

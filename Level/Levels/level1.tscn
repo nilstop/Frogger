@@ -1,11 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://pc6j1j3bu5tr"]
+[gd_scene load_steps=8 format=3 uid="uid://pc6j1j3bu5tr"]
 
 [ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_quyor"]
 [ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="2_6flb8"]
+[ext_resource type="Texture2D" uid="uid://b7uu4y8a2rptn" path="res://Level/leaf-Sheet.png" id="2_6418u"]
 [ext_resource type="PackedScene" uid="uid://uwkymhutksdn" path="res://Level/Elements/River/river.tscn" id="3_ar1a7"]
 [ext_resource type="PackedScene" uid="uid://bkdl2dohnp4xh" path="res://Level/Elements/Railway/rail.tscn" id="4_epsfu"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0mfwm"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k0yn7"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-320, -720, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 0, 1)
+direction = Vector3(1, 1, 0)
+spread = 17.913
+initial_velocity_min = 180.24
+initial_velocity_max = 296.43
+angular_velocity_min = -101.58
+angular_velocity_max = 77.68
+gravity = Vector3(0, -15, 0)
+anim_speed_min = 2.48
+anim_speed_max = 12.4
+
 [node name="Level" instance=ExtResource("1_quyor")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Camera2D" index="0"]
+z_index = 1500
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_0mfwm")
+amount = 14
+texture = ExtResource("2_6418u")
+lifetime = 20.0
+preprocess = 10.75
+process_material = SubResource("ParticleProcessMaterial_k0yn7")
 
 [node name="Goal" parent="Elements" index="0"]
 cell = 10

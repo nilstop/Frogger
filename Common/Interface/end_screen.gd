@@ -20,6 +20,8 @@ var frog
 var death_screen := false
 var disappearing := false
 var highscore_beaten := false
+#prevents an issue where we check and set the highscores twice which results in it not thinking you beated your highscore
+var guard := false
 
 func _ready() -> void:
 	frog = get_tree().get_first_node_in_group("frog")
@@ -29,9 +31,6 @@ func _ready() -> void:
 	buttons.hide()
 	case.hide()
 	input_message.hide()
-
-func debug():
-	print("frog death")
 
 func _process(_delta: float) -> void:
 	if death_screen:
@@ -44,32 +43,28 @@ func _process(_delta: float) -> void:
 			show()
 
 func check_highscore():
-	print("check")
-	if Global.time < Global.highscores[Global.current_level - 1] or Global.highscores[Global.current_level - 1.0] == -1.0:
-		Global.highscores[Global.current_level - 1.0] = Global.time
-		print("highscore beaten")
-		highscore_beaten = true
-		timer_label.modulate = Color.YELLOW
-		highscore_beaten_label.show()
-	else:
-		print("highscore not beaten")
-		highscore_beaten = false
-		highscore_beaten_label.hide()
-		timer_label.modulate = Color.WHITE
+	if !guard:
+		guard = true
+		if Global.time < Global.get_level_highscore() or Global.get_level_highscore() == -1.0:
+			Global.highscores[Global.current_level - 1.0] = Global.time
+			highscore_beaten = true
+			timer_label.modulate = Color.YELLOW
+			highscore_beaten_label.show()
+		else:
+			highscore_beaten = false
+			highscore_beaten_label.hide()
+			timer_label.modulate = Color.WHITE
 
 func appear():
-	print("appear")
 	disappearing = false
 	#If end screen is win screen
 	if frog.state == frog.States.WIN:
-		print("win")
 
 		case.text = "LEVEL CLEARED"
 		input_message.text = "PRESS ENTER TO REPLAY"
 		buttons.show()
 	#if end screen is death screen
 	else:
-		print("failed")
 		case.text = "FAILED"
 		input_message.text = "PRESS ENTER TO RETRY"
 		buttons.hide()
@@ -81,6 +76,7 @@ func appear():
 	input_message.show()
 
 func disappear():
+	guard = false
 	h_separator.add_theme_constant_override("separation", 174)
 	case.hide()
 	buttons.hide()
@@ -89,12 +85,12 @@ func disappear():
 	timer.start()
 	disappeartimer.start()
 	highscore_beaten_label.hide()
+	timer_label.modulate = Color.WHITE
 
 func _on_timer_timeout() -> void:
 	if death_screen == true:
 		input_message.visible = !input_message.visible
-		if highscore_beaten == true:
-			print("flash")
+		if highscore_beaten == true and guard == true:
 			highscore_beaten_label.visible = !highscore_beaten_label.visible
 
 
@@ -108,5 +104,5 @@ func _on_quit_to_menu_pressed() -> void:
 
 func _on_next_level_button_pressed() -> void:
 	get_tree().get_first_node_in_group("loadsfx").play()
-	print(Global.PATH_TO_LEVELS + "level%d" %(Global.current_level + 1) + ".tscn")
+	#print(Global.PATH_TO_LEVELS + "level%d" %(Global.current_level + 1) + ".tscn")
 	Global.switch(Global.PATH_TO_LEVELS + "level%d" %(Global.current_level + 1) + ".tscn")

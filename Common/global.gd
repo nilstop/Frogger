@@ -10,6 +10,11 @@ var highscores := [-1.0, -1.0, -1.0, -1.0]
 var level_width := 1
 
 const PATH_TO_LEVELS := "res://Level/Levels/"
+@onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
+@onready var load_label: Label = get_tree().get_first_node_in_group("loadlabel")
+
+func _ready() -> void:
+	loading_timer.connect("timeout", done_loading)
 
 func inst(scene):
 	var instance = load(scene).instantiate()
@@ -27,4 +32,17 @@ func switch(scene):
 		get_tree().get_first_node_in_group("level").queue_free()
 		await get_tree().process_frame
 		inst(scene)
+		load_level()
 		current_level += 1
+
+func get_level_highscore():
+	return highscores[current_level - 1]
+
+func load_level():
+	Engine.time_scale = 3.4
+	load_label.show()
+	loading_timer.start()
+
+func done_loading():
+	Engine.time_scale = 1
+	load_label.hide()
