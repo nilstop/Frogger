@@ -110,15 +110,16 @@ func set_state(new_state: int):
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(self, "modulate:v", 1, 0.5).from(3)
-		tween.tween_method(jump, 0.0, 1.0, jump_duration * 2)
+		tween.tween_property(self, "modulate:v", 1, win_anim_duration).from(5)
+		tween.tween_method(jump, 0.0, 1.0, win_anim_duration)
 		await tween.finished
+		hide()
+		inst(death_fx, "death_fx")
 		global_position.x = game_start_pos.x
 		emit_signal("end")
 		win_animation = false
-		%Camera2D.zoom = Vector2(0.65, 0.65)
-		hide()
-		inst(death_fx, "death_fx")
+		%Camera2D.zoom = Vector2(0.55, 0.55)
+
 	
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos.x - jump_start_pos.x,jump_end_pos.y - jump_start_pos.y)

@@ -33,11 +33,11 @@ func _process(_delta: float) -> void:
 			zoom = lerp(zoom, Vector2(1.05, 1.05), 0.2)
 		elif %Frog.state == %Frog.States.WIN:
 			position_smoothing_speed = 0.5
-			zoom = lerp(zoom, Vector2(0.95, 0.95), 0.06)
+			zoom = lerp(zoom, Vector2(0.95, 0.95), 0.03)
 		else:
 			position_smoothing_speed = 2.0
 			zoom = lerp(zoom, Vector2(0.95, 0.95), 0.08)
 		
 		if  %Frog.win_animation == true:
 			shaketense *= 82 * _delta
-			zoom = lerp(zoom, Vector2(1.6, 1.6), 0.04)
+			zoom = lerp(zoom, Vector2(0.45, 0.45), 0.01)
