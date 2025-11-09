@@ -5,14 +5,12 @@ extends Area2D
 @onready var pause_menu = get_tree().get_first_node_in_group("pausemenu")
 @onready var gpu_particles_2d: GPUParticles2D
 
-
-@export var offset : int
-
 var base_width := 128
 var speed : int
 var width_scale : float
 var direction : int
 
+@export var sprite_offset : float
 
 
 
@@ -25,8 +23,8 @@ func _ready() -> void:
 	left_corner = -Global.camera_x_divide * Global.cell_size - Global.cell_size/2.0 * width_scale
 	right_corner = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + Global.cell_size/2.0 * width_scale
 	global_position.x = Global.screen_rect.x + Global.camera_x_divide * Global.cell_size + base_width/2.0 * width_scale
-	global_position.y -= offset
 	collision_shape.scale.x = width_scale
+	global_position.y += sprite_offset
 	if direction == 1:
 		global_position.x = -Global.camera_x_divide * Global.cell_size - base_width/2.0 * width_scale
 	else:

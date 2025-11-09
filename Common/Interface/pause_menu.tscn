@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c65ep5sqrooge"]
+[gd_scene load_steps=15 format=3 uid="uid://c65ep5sqrooge"]
 
 [ext_resource type="Texture2D" uid="uid://cmrg5swy2cswq" path="res://Common/Interface/Rect.png" id="1_8a5s4"]
 [ext_resource type="Script" uid="uid://h1ubk0sd1kbi" path="res://Common/Interface/pause_menu.gd" id="1_ejkor"]
 [ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="1_irnng"]
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="2_ejkor"]
+[ext_resource type="AudioStream" uid="uid://ck14wileb2gmi" path="res://Common/Audio/Pause.wav" id="5_5jvtn"]
+[ext_resource type="AudioStream" uid="uid://bhamnbithn4qf" path="res://Common/Audio/Resume.wav" id="6_h3uv4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jvtn"]
 
@@ -134,6 +136,14 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_y2dry")
 theme_override_styles/hover = SubResource("StyleBoxTexture_86skp")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_4wgyj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ggssa")
+
+[node name="PauseSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5jvtn")
+volume_db = 8.0
+
+[node name="ResumeSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h3uv4")
+volume_db = 8.0
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Quit to menu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]

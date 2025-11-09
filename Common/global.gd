@@ -10,8 +10,10 @@ var highscores := [-1.0, -1.0, -1.0, -1.0]
 var level_width := 1
 
 const PATH_TO_LEVELS := "res://Level/Levels/"
+
 @onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
 @onready var load_label: Label = get_tree().get_first_node_in_group("loadlabel")
+@onready var quit_sfx: AudioStreamPlayer = get_tree().get_first_node_in_group("quitsfx")
 
 func _ready() -> void:
 	loading_timer.connect("timeout", done_loading)
@@ -21,6 +23,8 @@ func inst(scene):
 	get_tree().get_first_node_in_group("world").add_child(instance)
 
 func quit_to_menu():
+	
+	quit_sfx.play()
 	Global.current_level = -1
 	time = 0.0
 	get_tree().get_first_node_in_group("main_menu").appear()

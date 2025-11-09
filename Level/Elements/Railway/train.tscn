@@ -41,19 +41,19 @@ anim_speed_max = 3.63
 
 [node name="Train" instance=ExtResource("1_7s11n")]
 collision_layer = 32
+sprite_offset = -48.0
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -48)
 texture = ExtResource("2_2o7ic")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(33, -23)
+position = Vector2(33, 0)
 shape = SubResource("RectangleShape2D_yqvx4")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
 z_index = 1000
 material = SubResource("CanvasItemMaterial_yqvx4")
-position = Vector2(140, -108)
+position = Vector2(140, -60)
 amount = 35
 texture = ExtResource("3_yqvx4")
 lifetime = 1.5

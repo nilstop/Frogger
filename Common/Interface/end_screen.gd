@@ -12,6 +12,7 @@ extends Control
 @onready var buttons: HBoxContainer = $MarginContainer/Buttons
 @onready var next_level: VBoxContainer = $"MarginContainer/Buttons/Next Level"
 @onready var highscore_beaten_label: Label = $"../VBoxContainer/New Highscore"
+@onready var restart_sfx: AudioStreamPlayer2D = $RestartSfx
 
 
 
@@ -36,6 +37,7 @@ func _process(_delta: float) -> void:
 	if death_screen:
 		if Input.is_action_just_pressed("debug_reset") and disappearing == false:
 			disappearing = true
+			restart_sfx.play()
 			disappear()
 		if pause_menu.paused == true:
 			hide()

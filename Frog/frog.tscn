@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bu0rtkgtwhf3i"]
+[gd_scene load_steps=23 format=3 uid="uid://bu0rtkgtwhf3i"]
 
 [ext_resource type="Script" uid="uid://c782tsnlek1k2" path="res://Frog/frog.gd" id="1_ignkv"]
 [ext_resource type="PackedScene" uid="uid://b1ssjgqt4r72u" path="res://Frog/Effects/death_fx.tscn" id="2_gt6fl"]
@@ -66,6 +66,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(0, 0, 16, 16)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ignkv"]
@@ -228,9 +240,63 @@ tracks/2/keys = {
 "values": [Rect2(16, 0, 16, 16), Rect2(0, 0, 16, 16)]
 }
 
+[sub_resource type="Animation" id="Animation_w1u87"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.01),
+"transitions": PackedFloat32Array(0.420449, 1, 1),
+"update": 0,
+"values": [Vector2(6, 16), Vector2(8, 8), Vector2(8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1, 1.01),
+"transitions": PackedFloat32Array(0.329877, 2.07053, 1, 1),
+"update": 0,
+"values": [0.0, 6.28319, 3.14159, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.01),
+"transitions": PackedFloat32Array(2.14355, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt6fl"]
 _data = {
 &"RESET": SubResource("Animation_uoul2"),
+&"hit": SubResource("Animation_w1u87"),
 &"jump": SubResource("Animation_ignkv"),
 &"jump_left": SubResource("Animation_gt6fl"),
 &"jump_right": SubResource("Animation_tw4w0"),
@@ -272,7 +338,6 @@ shape = SubResource("RectangleShape2D_whe2r")
 libraries = {
 &"": SubResource("AnimationLibrary_gt6fl")
 }
-speed_scale = 0.25
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -314,24 +379,24 @@ shape = SubResource("RectangleShape2D_tw4w0")
 
 [node name="JumpSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_jeqqi")
-volume_db = 8.0
+volume_db = 15.0
 
 [node name="LandSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_w1u87")
-volume_db = 8.0
+volume_db = 15.0
 
 [node name="WinSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_8bd7q")
-volume_db = 8.0
+volume_db = 15.0
 
 [node name="DrownSfx" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 1)
 stream = ExtResource("8_vhoxf")
-volume_db = 8.0
+volume_db = 15.0
 
 [node name="HitSfx" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 1)
 stream = ExtResource("9_w1u87")
-volume_db = 6.0
+volume_db = 15.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

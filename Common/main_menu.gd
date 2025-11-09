@@ -3,9 +3,11 @@ extends Control
 @onready var world: Node2D = $"../.."
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 @onready var layers: Node2D = $"../../Layers"
-@onready var load_sfx: AudioStreamPlayer2D = $"../../LoadSfx"
+@onready var load_sfx: AudioStreamPlayer = $"../../LoadSfx"
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
+@onready var leaf_particles: GPUParticles2D = %GPUParticles2D
+
 
 
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 
 func disable():
 	margin_container.hide()
+	leaf_particles.hide()
 	get_button(1).disabled = true
 	get_button(2).disabled = true
 	get_button(3).disabled = true
@@ -30,6 +33,7 @@ func disable():
 
 func appear():
 	show()
+	leaf_particles.show()
 	margin_container.show()
 	get_button(1).disabled = false
 	get_button(2).disabled = false

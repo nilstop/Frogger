@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://b1ayi5u7573vq"]
+[gd_scene load_steps=21 format=4 uid="uid://b1ayi5u7573vq"]
 
 [ext_resource type="Script" uid="uid://bjnkjhwcahs8f" path="res://Level/logic/camera.gd" id="1_py82k"]
 [ext_resource type="PackedScene" uid="uid://e24xhc4cy77j" path="res://Level/logic/tile_map.tscn" id="2_1teg4"]
+[ext_resource type="Texture2D" uid="uid://b7uu4y8a2rptn" path="res://Level/leaf-Sheet.png" id="2_i5g78"]
 [ext_resource type="PackedScene" uid="uid://brjd62abuxr58" path="res://Level/Elements/Goal/goal.tscn" id="3_i5g78"]
 [ext_resource type="PackedScene" uid="uid://dn6p4kkbjfb3j" path="res://Level/foliage_map.tscn" id="4_q47le"]
 [ext_resource type="PackedScene" uid="uid://bu0rtkgtwhf3i" path="res://Frog/frog.tscn" id="5_dx36h"]
@@ -10,6 +11,35 @@
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="8_luomk"]
 [ext_resource type="Script" uid="uid://b0f166r7wspys" path="res://Level/logic/timer.gd" id="9_k8npl"]
 [ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="10_am3y4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q47le"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_1teg4"]
+offsets = PackedFloat32Array(0.00344828, 0.865517, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i5g78"]
+gradient = SubResource("Gradient_1teg4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dx36h"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-320, -720, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 0, 1)
+direction = Vector3(1, 1, 0)
+spread = 17.913
+initial_velocity_min = 180.24
+initial_velocity_max = 296.43
+angular_velocity_min = -101.58
+angular_velocity_max = 77.68
+gravity = Vector3(0, -15, 0)
+color_ramp = SubResource("GradientTexture1D_i5g78")
+anim_speed_min = 2.48
+anim_speed_max = 12.4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1teg4"]
 
@@ -41,6 +71,17 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("1_py82k")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Camera2D"]
+z_index = 1500
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_q47le")
+amount = 14
+texture = ExtResource("2_i5g78")
+lifetime = 20.0
+preprocess = 10.75
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = SubResource("ParticleProcessMaterial_dx36h")
+
 [node name="TileMap" parent="." groups=["tilemap"] instance=ExtResource("2_1teg4")]
 unique_name_in_owner = true
 z_index = -1000
@@ -67,6 +108,7 @@ position = Vector2(0, -48)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

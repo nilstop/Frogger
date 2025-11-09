@@ -87,7 +87,7 @@
 			"steps": [
 				{
 					"details": "Car",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Train",

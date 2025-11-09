@@ -28,11 +28,13 @@ signal win
 @onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
 
 #animation related
+@onready var sprite: Sprite2D = $Sprite2D
 @export var death_fx : PackedScene
 @export var land_particles : PackedScene
 @export var jump_duration : float
 @export var jump_curve : Curve
 @export var win_anim_duration : float = jump_duration * 2
+
 
 enum States {JUMP, IDLE, DEAD, WIN, LOADING}
 
@@ -40,6 +42,9 @@ var state : States = States.LOADING: set = set_state
 var jump_start_pos : Vector2
 var jump_end_pos : Vector2
 var log_velocity : int
+
+var hit_velocity : Vector2
+var hit_start_vel : int
 var win_animation := false
 
 var tweens := [Tween]
@@ -147,10 +152,20 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("debug_reset"):
 			if state != States.JUMP and win_animation == false:
 				emit_signal("start")
+				animation_player.stop()
 				rotation = deg_to_rad(0.0)
+				sprite.rotation = deg_to_rad(0.0)
+				scale = Vector2(1.0,1.0)
+				sprite.region_rect = Rect2(16.0,0.0,16.0,16.0)
+				sprite.scale = Vector2(8.0,8.0)
 				global_position = game_start_pos
+				
 				show()
 				set_state(States.IDLE)
+		
+		if state == States.DEAD:
+			global_position += hit_velocity * delta
+			hit_velocity = lerp(hit_velocity, Vector2(0.0,0.0), 0.1)
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
@@ -177,6 +192,20 @@ func basic_death():
 	set_state(States.DEAD)
 	emit_signal("frog_death")
 
+func hit_death(area, action):
+	%Camera2D.shaketense += 400
+	hit_sfx.play()
+	set_state(States.DEAD)
+	emit_signal("frog_death")
+	animation_player.play("hit")
+	var direction_to_area = global_position.direction_to(area.global_position)
+	var bounce_direction
+	if action == "car":
+		bounce_direction = direction_to_area.angle() + deg_to_rad(randi_range(170,190))
+	else:
+		bounce_direction = direction_to_area.angle() + deg_to_rad(randi_range(-10,10))
+	hit_velocity = Vector2.RIGHT.rotated(bounce_direction) * area.speed * 6 * area.direction
+
 func collision_action(action: String):
 	print("collision action")
 	if state == States.DEAD or state == States.WIN:
@@ -186,11 +215,9 @@ func collision_action(action: String):
 			tweens[0].stop()
 		emit_signal("timer_end")
 		if action == "roadkill":
-			hit_sfx.play()
-			basic_death()
+			hit_death(get_overlapping_areas().get(0), "car")
 		elif action == "railkill":
-			hit_sfx.play()
-			basic_death()
+			hit_death(train_area.get_overlapping_areas().get(0), "train")
 		elif action == "drowned":
 			drown_sfx.play()
 			inst(death_fx, "death_fx")
@@ -214,5 +241,5 @@ func inst(scene : PackedScene, type : String):
 
 func land_fx():
 	inst(land_particles, "land_particles")
-	%Camera2D.shaketense += 300.0
+	%Camera2D.shaketense += 200.0
 	%Camera2D.zoom = Vector2(0.9, 0.9)
