@@ -14,31 +14,24 @@ extends Control
 
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
 
-const LABEL_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Highscore"
-const BUTTON_PATH := "MarginContainer/VBoxContainer/HBoxContainer/Button%d/Level%d"
+const LABEL_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Button%d/Highscore"
+const BUTTON_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Button%d/Level%d"
 
 func _ready() -> void:
 	loading_timer.connect("timeout", done_loading)
 	camera_2d.make_current()
 
 func disable():
-	margin_container.hide()
-	leaf_particles.hide()
-	get_button(1).disabled = true
-	get_button(2).disabled = true
-	get_button(3).disabled = true
-	get_button(4).disabled = true
+	hide()
+	#margin_container.hide()
+	#leaf_particles.hide()
 	await get_tree().process_frame
 	layers.hide()
 
 func appear():
 	show()
-	leaf_particles.show()
-	margin_container.show()
-	get_button(1).disabled = false
-	get_button(2).disabled = false
-	get_button(3).disabled = false
-	get_button(4).disabled = false
+	#leaf_particles.show()
+	#margin_container.show()
 	layers.show()
 	camera_2d.make_current()
 	labels()
@@ -47,7 +40,14 @@ func get_button(button):
 	return get_node(BUTTON_PATH %[button, button])
 
 func get_label(label):
-	return get_node(LABEL_PATH %label)
+	print(label)
+	print(get_node(LABEL_PATH %[1, label]))
+	print(get_node(LABEL_PATH %[2, label]))
+	if label < 5:
+		return get_node(LABEL_PATH %[1, label])
+	else:
+		return get_node(LABEL_PATH %[2, label])
+	return# get_node(LABEL_PATH %label)
 
 	#return load(BUTTON_PATH %[level, level])
 
@@ -82,6 +82,17 @@ func _on_level_3_pressed() -> void:
 func _on_level_4_pressed() -> void:
 	level(4)
 
+func _on_level_5_pressed() -> void:
+	level(5)
+
+func _on_level_6_pressed() -> void:
+	level(6)
+
+func _on_level_7_pressed() -> void:
+	level(7)
+
+func _on_level_8_pressed() -> void:
+	level(8)
 
 func done_loading() -> void:
 	hide()

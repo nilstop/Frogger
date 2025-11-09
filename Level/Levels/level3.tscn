@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://oyqr5wvyu72f"]
+[gd_scene load_steps=4 format=3 uid="uid://oyqr5wvyu72f"]
 
 [ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_xqpso"]
+[ext_resource type="PackedScene" uid="uid://uwkymhutksdn" path="res://Level/Elements/River/river.tscn" id="2_psy18"]
+[ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="3_te1i0"]
 
 [node name="Level3" instance=ExtResource("1_xqpso")]
 
 [node name="Goal" parent="Elements" index="0"]
 cell = 10
+
+[node name="River" parent="Elements" index="1" instance=ExtResource("2_psy18")]
+cell = 2
+frequency_seconds = 2.0
+speed = 200
+direction = -1
+
+[node name="River2" parent="Elements" index="2" instance=ExtResource("2_psy18")]
+cell = 4
+frequency_seconds = 2.0
+speed = 360
+direction = 1
+
+[node name="Driveway" parent="Elements" index="3" instance=ExtResource("3_te1i0")]
+cell = 5
+frequency_seconds = 2.4
+speed = 540
+direction = -1
+
+[node name="River3" parent="Elements" index="4" instance=ExtResource("2_psy18")]
+cell = 8
+frequency_seconds = 1.26
+speed = 500
+direction = 1
+
+[node name="Driveway2" parent="Elements" index="5" instance=ExtResource("3_te1i0")]
+cell = 7
+frequency_seconds = 2.5
+speed = 400
+direction = -1

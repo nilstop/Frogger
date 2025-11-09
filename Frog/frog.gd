@@ -120,7 +120,7 @@ func set_state(new_state: int):
 		win_animation = false
 		%Camera2D.zoom = Vector2(0.55, 0.55)
 
-	
+
 func jump(curve_time):
 	global_position = jump_start_pos - jump_curve.sample(curve_time) * Vector2(jump_end_pos.x - jump_start_pos.x,jump_end_pos.y - jump_start_pos.y)
 
@@ -216,7 +216,7 @@ func collision_action(action: String):
 		return
 	else:
 		if tweens.size():
-			tweens[0].stop()
+			tweens[0].kill()
 		emit_signal("timer_end")
 		if action == "roadkill":
 			hit_death(get_overlapping_areas().get(0))

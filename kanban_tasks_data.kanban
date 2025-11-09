@@ -19,7 +19,7 @@
 			"uuid": "b39c4b10-a731-4287-a3e8-d77747c4272e",
 			"title": "Doing",
 			"tasks": [
-				"0886aaf8-c6cf-44be-adfd-5803c6df8579"
+				"3ed1369f-76df-4581-8907-f86e848d33a0"
 			]
 		},
 		{
@@ -39,7 +39,8 @@
 				"051e3b0d-5787-4123-b017-c4b85bc42f0e",
 				"bf165eb1-346e-42ec-8618-5e62c8f22f87",
 				"847abd27-3cf9-41ee-aec3-f0252b4137d1",
-				"b31c6e82-fa93-421d-b582-a973fc28615b"
+				"b31c6e82-fa93-421d-b582-a973fc28615b",
+				"0886aaf8-c6cf-44be-adfd-5803c6df8579"
 			]
 		}
 	],
@@ -214,6 +215,13 @@
 					"done": false
 				}
 			]
+		},
+		{
+			"uuid": "3ed1369f-76df-4581-8907-f86e848d33a0",
+			"title": "Tutorial",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": []
 		}
 	],
 	"layout": {
