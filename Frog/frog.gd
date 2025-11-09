@@ -104,10 +104,13 @@ func set_state(new_state: int):
 		%Camera2D.shaketense = 1
 		jump_start_pos = global_position
 		jump_end_pos = global_position + Vector2(0, Global.cell_size * 3)
+		
 		animation_player.play("win")
 		animation_player.speed_scale = 0.25 / jump_duration * 2
 		animation_player.seek(0.0, true)
 		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(self, "modulate:v", 1, 0.5).from(3)
 		tween.tween_method(jump, 0.0, 1.0, jump_duration * 2)
 		await tween.finished
 		global_position.x = game_start_pos.x
@@ -156,7 +159,7 @@ func _physics_process(delta: float) -> void:
 				rotation = deg_to_rad(0.0)
 				sprite.rotation = deg_to_rad(0.0)
 				scale = Vector2(1.0,1.0)
-				sprite.region_rect = Rect2(16.0,0.0,16.0,16.0)
+				sprite.region_rect = Rect2(0.0,0.0,16.0,16.0)
 				sprite.scale = Vector2(8.0,8.0)
 				global_position = game_start_pos
 				
@@ -192,19 +195,19 @@ func basic_death():
 	set_state(States.DEAD)
 	emit_signal("frog_death")
 
-func hit_death(area, action):
-	%Camera2D.shaketense += 400
+func hit_death(area):
+	%Camera2D.shaketense += 100 * area.speed / 40
 	hit_sfx.play()
 	set_state(States.DEAD)
 	emit_signal("frog_death")
 	animation_player.play("hit")
+	sprite.look_at(area.global_position)
 	var direction_to_area = global_position.direction_to(area.global_position)
 	var bounce_direction
-	if action == "car":
-		bounce_direction = direction_to_area.angle() + deg_to_rad(randi_range(170,190))
-	else:
-		bounce_direction = direction_to_area.angle() + deg_to_rad(randi_range(-10,10))
-	hit_velocity = Vector2.RIGHT.rotated(bounce_direction) * area.speed * 6 * area.direction
+	bounce_direction = direction_to_area.angle() + deg_to_rad(randi_range(170,190))
+	hit_velocity = Vector2.RIGHT.rotated(bounce_direction) * area.speed * 6
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:v", 1, 0.1).from(15)
 
 func collision_action(action: String):
 	print("collision action")
@@ -215,9 +218,9 @@ func collision_action(action: String):
 			tweens[0].stop()
 		emit_signal("timer_end")
 		if action == "roadkill":
-			hit_death(get_overlapping_areas().get(0), "car")
+			hit_death(get_overlapping_areas().get(0))
 		elif action == "railkill":
-			hit_death(train_area.get_overlapping_areas().get(0), "train")
+			hit_death(train_area.get_overlapping_areas().get(0))
 		elif action == "drowned":
 			drown_sfx.play()
 			inst(death_fx, "death_fx")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bjnkjhwcahs8f" path="res://Level/logic/camera.gd" id="1_py82k"]
 [ext_resource type="PackedScene" uid="uid://e24xhc4cy77j" path="res://Level/logic/tile_map.tscn" id="2_1teg4"]
-[ext_resource type="Texture2D" uid="uid://b7uu4y8a2rptn" path="res://Level/leaf-Sheet.png" id="2_i5g78"]
+[ext_resource type="Texture2D" uid="uid://b7uu4y8a2rptn" path="res://Level/Environment/leaf-Sheet.png" id="2_i5g78"]
 [ext_resource type="PackedScene" uid="uid://brjd62abuxr58" path="res://Level/Elements/Goal/goal.tscn" id="3_i5g78"]
-[ext_resource type="PackedScene" uid="uid://dn6p4kkbjfb3j" path="res://Level/foliage_map.tscn" id="4_q47le"]
+[ext_resource type="PackedScene" uid="uid://dn6p4kkbjfb3j" path="res://Level/Environment/foliage_map.tscn" id="4_q47le"]
 [ext_resource type="PackedScene" uid="uid://bu0rtkgtwhf3i" path="res://Frog/frog.tscn" id="5_dx36h"]
 [ext_resource type="PackedScene" uid="uid://c65ep5sqrooge" path="res://Common/Interface/pause_menu.tscn" id="6_1p6h5"]
 [ext_resource type="PackedScene" uid="uid://bk48cr44oauc4" path="res://Common/Interface/end_screen.tscn" id="7_uqeto"]

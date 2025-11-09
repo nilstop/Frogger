@@ -39,8 +39,9 @@ func _process(delta: float) -> void:
 	if pause_menu.paused == false:
 		global_position.x += direction * speed * delta
 	if direction == -1:
-		if global_position.x < left_corner:
+		if global_position.x < left_corner - Global.screen_rect.x/2:
 			queue_free()
 	else:
 		if global_position.x > right_corner + Global.screen_rect.x/2:
+			print("yes")
 			queue_free()

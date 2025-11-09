@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7uu4y8a2rptn"
-path="res://.godot/imported/leaf-Sheet.png-ffa1a5c62ee80426e115f7fc727b2644.ctex"
+uid="uid://cpbfdv28n6exf"
+path="res://.godot/imported/foliageset.png-e6f5d7d804ee413f1df438e57fdcfc45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/leaf-Sheet.png"
-dest_files=["res://.godot/imported/leaf-Sheet.png-ffa1a5c62ee80426e115f7fc727b2644.ctex"]
+source_file="res://Level/Environment/foliageset.png"
+dest_files=["res://.godot/imported/foliageset.png-e6f5d7d804ee413f1df438e57fdcfc45.ctex"]
 
 [params]
 
