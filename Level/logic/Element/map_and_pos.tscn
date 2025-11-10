@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhevv172fouia" path="res://Level/logic/Element/tile_map_script.gd" id="1_1oq2a"]
 
-[node name="TileMapScript" type="Node2D"]
+[node name="EntityLogicComponent" type="Node2D"]
 script = ExtResource("1_1oq2a")
+
+[node name="OffsetTimer" type="Timer" parent="."]

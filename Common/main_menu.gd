@@ -18,6 +18,7 @@ const LABEL_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Button
 const BUTTON_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Button%d/Level%d"
 
 func _ready() -> void:
+	labels()
 	loading_timer.connect("timeout", done_loading)
 	camera_2d.make_current()
 
@@ -40,9 +41,6 @@ func get_button(button):
 	return get_node(BUTTON_PATH %[button, button])
 
 func get_label(label):
-	print(label)
-	print(get_node(LABEL_PATH %[1, label]))
-	print(get_node(LABEL_PATH %[2, label]))
 	if label < 5:
 		return get_node(LABEL_PATH %[1, label])
 	else:
@@ -52,11 +50,11 @@ func get_label(label):
 	#return load(BUTTON_PATH %[level, level])
 
 func labels():
-	for i in 4:
+	for i in 8:
 		if Global.highscores[i] != -1.00:
 			get_label(i+1).text = str(Global.highscores[i]).pad_decimals(2) + "s"
 		else:
-			get_label(i+1).text = "--"
+			get_label(i+1).text = ""
 
 func inst(level):
 	var instance = level.instantiate()

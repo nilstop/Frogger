@@ -156,6 +156,8 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("debug_reset"):
 			if state != States.JUMP and win_animation == false:
 				emit_signal("start")
+				var tween = create_tween()
+				tween.tween_property(self, "modulate:v", 1, 0.3).from(5)
 				animation_player.stop()
 				rotation = deg_to_rad(0.0)
 				sprite.rotation = deg_to_rad(0.0)
@@ -173,8 +175,8 @@ func _physics_process(delta: float) -> void:
 
 #run collision_action() if you're colliding with the masked layer
 func check_collision():
-	if global_position.x < Global.level_width * Global.cell_size and global_position.x < -Global.level_width * Global.cell_size:
-		return "out of bounds"	
+	if global_position.x <= -Global.level_width_offset * Global.cell_size or global_position.x >= (Global.level_width_offset + Global.level_width) * Global.cell_size: #global_position.x < Global.level_width * Global.cell_size and global_position.x < -Global.level_width * Global.cell_size:
+		return "out of bounds"
 	if train_area.has_overlapping_areas():
 		return "railkill"
 	elif has_overlapping_areas():

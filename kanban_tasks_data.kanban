@@ -196,22 +196,34 @@
 			"steps": [
 				{
 					"details": "1",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "2",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "3",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "4",
+					"done": true
+				},
+				{
+					"details": "5",
 					"done": false
 				},
 				{
-					"details": "+?",
+					"details": "6",
+					"done": false
+				},
+				{
+					"details": "7",
+					"done": false
+				},
+				{
+					"details": "8",
 					"done": false
 				}
 			]

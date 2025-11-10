@@ -6,22 +6,22 @@
 [node name="Level" instance=ExtResource("1_quyor")]
 
 [node name="Goal" parent="Elements" index="0"]
-cell = 8
+cell = 7
 
 [node name="Driveway" parent="Elements" index="1" instance=ExtResource("2_6flb8")]
-cell = 3
+cell = 2
 frequency_seconds = 1.5
 speed = 400
 direction = -1
 
 [node name="Driveway2" parent="Elements" index="2" instance=ExtResource("2_6flb8")]
-cell = 5
+cell = 4
 frequency_seconds = 1.7
 speed = 450
 direction = 1
 
 [node name="Driveway3" parent="Elements" index="3" instance=ExtResource("2_6flb8")]
-cell = 6
+cell = 5
 frequency_seconds = 2.5
 speed = 300
 direction = 1

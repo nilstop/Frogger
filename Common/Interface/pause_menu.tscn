@@ -90,8 +90,9 @@ theme_override_font_sizes/font_size = 32
 text = "PAUSED"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 13
+theme_override_constants/separation = -17
 theme_override_styles/separator = SubResource("StyleBoxEmpty_5jvtn")
 
 [node name="Highscore" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
@@ -103,6 +104,19 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_ejkor")
 theme_override_font_sizes/font_size = 16
 text = "LEVEL HIGHSCORE: 0.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_ejkor")
+theme_override_font_sizes/font_size = 16
+text = "CONTROLS: A W D
+ARROWKEYS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
