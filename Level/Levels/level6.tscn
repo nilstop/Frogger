@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxik56mnu75xv"]
+
+[ext_resource type="PackedScene" uid="uid://b1ayi5u7573vq" path="res://Level/level.tscn" id="1_cu7r4"]
+[ext_resource type="PackedScene" uid="uid://bkdl2dohnp4xh" path="res://Level/Elements/Railway/rail.tscn" id="2_cvvdb"]
+[ext_resource type="PackedScene" uid="uid://cb1g7kvj8un5h" path="res://Level/Elements/Driveway/driveway.tscn" id="3_0esku"]
+[ext_resource type="PackedScene" uid="uid://uwkymhutksdn" path="res://Level/Elements/River/river.tscn" id="4_sf8bf"]
+
+[node name="Level6" instance=ExtResource("1_cu7r4")]
+
+[node name="Goal" parent="Elements" index="0"]
+cell = 19
+
+[node name="Rail2" parent="Elements" index="1" instance=ExtResource("2_cvvdb")]
+cell = 2
+frequency_seconds = 1.7
+speed = 670
+direction = -1
+
+[node name="Rail3" parent="Elements" index="2" instance=ExtResource("2_cvvdb")]
+cell = 3
+frequency_seconds = 1.7
+speed = 670
+direction = 1
+time_offset = 1.0
+
+[node name="Driveway" parent="Elements" index="3" instance=ExtResource("3_0esku")]
+cell = 5
+frequency_seconds = 0.9
+speed = 730
+direction = 1
+time_offset = 0.5
+
+[node name="River" parent="Elements" index="4" instance=ExtResource("4_sf8bf")]
+cell = 6
+frequency_seconds = 0.6
+speed = 700
+direction = -1
+
+[node name="River2" parent="Elements" index="5" instance=ExtResource("4_sf8bf")]
+cell = 7
+frequency_seconds = 1.0
+speed = 700
+direction = 1
+time_offset = 1.0
+
+[node name="Rail" parent="Elements" index="6" instance=ExtResource("2_cvvdb")]
+cell = 8
+frequency_seconds = 3.4
+speed = 400
+direction = 1
+
+[node name="Driveway2" parent="Elements" index="7" instance=ExtResource("3_0esku")]
+cell = 10
+frequency_seconds = 0.8
+speed = 650
+direction = -1
+
+[node name="Driveway3" parent="Elements" index="8" instance=ExtResource("3_0esku")]
+cell = 11
+frequency_seconds = 0.8
+speed = 650
+direction = -1
+time_offset = 0.4
+
+[node name="Driveway4" parent="Elements" index="9" instance=ExtResource("3_0esku")]
+cell = 13
+frequency_seconds = 0.7
+speed = 890
+direction = 1
+
+[node name="Driveway5" parent="Elements" index="10" instance=ExtResource("3_0esku")]
+cell = 14
+frequency_seconds = 0.7
+speed = 890
+direction = 1
+time_offset = 0.3
+
+[node name="Rail4" parent="Elements" index="11" instance=ExtResource("2_cvvdb")]
+cell = 16
+frequency_seconds = 1.6
+speed = 780
+direction = -1
+
+[node name="Driveway6" parent="Elements" index="12" instance=ExtResource("3_0esku")]
+cell = 17
+frequency_seconds = 1.3
+speed = 600
+direction = 1
+
+[node name="Rail5" parent="Elements" index="13" instance=ExtResource("2_cvvdb")]
+cell = 18
+frequency_seconds = 1.6
+speed = 780
+direction = -1

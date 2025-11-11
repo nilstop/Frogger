@@ -11,6 +11,7 @@ var level_width := 11
 var level_width_offset := 2
 
 const PATH_TO_LEVELS := "res://Level/Levels/"
+const PATH_TO_DEFAULT_LEVEL := "res://Level/level.tscn"
 
 @onready var loading_timer: Timer = get_tree().get_first_node_in_group("loadingtimer")
 @onready var load_label: Label = get_tree().get_first_node_in_group("loadlabel")

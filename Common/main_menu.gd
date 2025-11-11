@@ -57,7 +57,12 @@ func labels():
 			get_label(i+1).text = ""
 
 func inst(level):
-	var instance = level.instantiate()
+	var instance
+	
+	if level != null:
+		instance = level.instantiate()
+	else:
+		instance = load(Global.PATH_TO_DEFAULT_LEVEL).instantiate()
 	world.add_child(instance)
 
 func level(level : int):

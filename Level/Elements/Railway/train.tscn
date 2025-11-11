@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2opoaddkoofs"]
+[gd_scene load_steps=11 format=3 uid="uid://c2opoaddkoofs"]
 
 [ext_resource type="PackedScene" uid="uid://4jje3hqdtfj4" path="res://Level/logic/Element/element_entity.tscn" id="1_7s11n"]
 [ext_resource type="Texture2D" uid="uid://c7ga7qsh8dbb" path="res://Level/Elements/Railway/locomotive.png" id="2_2o7ic"]
@@ -12,6 +12,13 @@ particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_yqvx4"]
+offsets = PackedFloat32Array(0, 0.614474, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.584314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_prvpy"]
+gradient = SubResource("Gradient_yqvx4")
 
 [sub_resource type="Curve" id="Curve_yqvx4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.490683, 1), -0.321934, -0.321934, 0, 0, Vector2(0.991718, 0), -3.61957, 0.0, 0, 0]
@@ -36,6 +43,7 @@ damping_max = 483.685
 scale_min = 6.76
 scale_max = 6.76
 scale_curve = SubResource("CurveTexture_prvpy")
+color_ramp = SubResource("GradientTexture1D_prvpy")
 anim_speed_min = 1.73
 anim_speed_max = 3.63
 
