@@ -84,7 +84,6 @@ func set_state(new_state: int):
 		
 		if state != States.DEAD:
 			if check_collision():
-				print("COLLISION")
 				collision_action(check_collision())
 			else:
 				set_state(States.IDLE)
@@ -96,7 +95,6 @@ func set_state(new_state: int):
 	
 	
 	if state == States.WIN:
-		print("emit win")
 		emit_signal("win")
 		win_animation = true
 		win_sfx.play()
@@ -149,7 +147,6 @@ func _physics_process(delta: float) -> void:
 					global_position.x += log_velocity * delta
 				
 				if check_collision():
-					print("COLLISION")
 					collision_action(check_collision())
 
 
@@ -213,12 +210,11 @@ func hit_death(area):
 	tween.tween_property(self, "modulate:v", 1, 0.1).from(15)
 
 func collision_action(action: String):
-	print("collision action")
 	if state == States.DEAD or state == States.WIN:
 		return
 	else:
 		if tweens.size():
-			tweens[0].kill()
+			tweens[tweens.size()-1].kill()
 		emit_signal("timer_end")
 		if action == "roadkill":
 			hit_death(get_overlapping_areas().get(0))
@@ -231,7 +227,6 @@ func collision_action(action: String):
 		elif action == "out of bounds":
 			basic_death()
 		elif action == "win":
-			print("set_state_win")
 			set_state(States.WIN)
 		else:
 			set_state(States.IDLE)

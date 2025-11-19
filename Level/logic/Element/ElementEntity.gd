@@ -43,5 +43,4 @@ func _process(delta: float) -> void:
 			queue_free()
 	else:
 		if global_position.x > right_corner + Global.screen_rect.x/2:
-			print("yes")
 			queue_free()

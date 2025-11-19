@@ -163,11 +163,11 @@ autostart = true
 wait_time = 0.5
 one_shot = true
 
-[node name="LoadSfx" type="AudioStreamPlayer2D" parent="."]
+[node name="LoadSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2x83c")
 volume_db = 7.0
 
-[node name="RestartSfx" type="AudioStreamPlayer2D" parent="."]
+[node name="RestartSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_dxoyr")
 volume_db = 8.0
 

@@ -23,7 +23,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	if time_offset >= 0.0:
+	if time_offset != 0.0:
 		offset_timer.wait_time = time_offset
 		offset_timer.start()
 	else:

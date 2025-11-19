@@ -25,13 +25,13 @@ func _ready() -> void:
 func disable():
 	hide()
 	#margin_container.hide()
-	#leaf_particles.hide()
+	leaf_particles.hide()
 	await get_tree().process_frame
 	layers.hide()
 
 func appear():
 	show()
-	#leaf_particles.show()
+	leaf_particles.show()
 	#margin_container.show()
 	layers.show()
 	camera_2d.make_current()

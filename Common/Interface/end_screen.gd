@@ -12,7 +12,7 @@ extends Control
 @onready var buttons: HBoxContainer = $MarginContainer/Buttons
 @onready var next_level: VBoxContainer = $"MarginContainer/Buttons/Next Level"
 @onready var highscore_beaten_label: Label = $"../VBoxContainer/New Highscore"
-@onready var restart_sfx: AudioStreamPlayer2D = $RestartSfx
+@onready var restart_sfx: AudioStreamPlayer = $RestartSfx
 
 
 

@@ -6,28 +6,28 @@
 [node name="Level2" instance=ExtResource("1_hpv5k")]
 
 [node name="Goal" parent="Elements" index="0"]
-cell = 10
+cell = 9
 
 [node name="Driveway" parent="Elements" index="1" instance=ExtResource("2_kkhul")]
-cell = 3
+cell = 2
 frequency_seconds = 1.5
 speed = 400
 direction = -1
 
 [node name="Driveway2" parent="Elements" index="2" instance=ExtResource("2_kkhul")]
-cell = 5
+cell = 4
 frequency_seconds = 1.5
 speed = 400
 direction = 1
 
 [node name="Driveway3" parent="Elements" index="3" instance=ExtResource("2_kkhul")]
-cell = 8
+cell = 7
 frequency_seconds = 1.0
 speed = 500
 direction = -1
 
 [node name="Driveway4" parent="Elements" index="4" instance=ExtResource("2_kkhul")]
-cell = 9
+cell = 8
 frequency_seconds = 1.5
 speed = 800
 direction = -1

@@ -12,7 +12,8 @@
 			"title": "Todo",
 			"tasks": [
 				"64f756d1-7e79-4a86-8294-2bff3fa414d7",
-				"c754b875-1b41-4a48-9196-a90f932c6b05"
+				"c754b875-1b41-4a48-9196-a90f932c6b05",
+				"4c21cfe1-0c19-48b0-925a-2f63e90bb232"
 			]
 		},
 		{
@@ -212,15 +213,15 @@
 				},
 				{
 					"details": "5",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "6",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "7",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "8",
@@ -234,6 +235,22 @@
 			"description": "",
 			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
 			"steps": []
+		},
+		{
+			"uuid": "4c21cfe1-0c19-48b0-925a-2f63e90bb232",
+			"title": "BONUS LEVEL",
+			"description": "",
+			"category": "47b9a8d3-e873-4247-9b72-aa756f31a892",
+			"steps": [
+				{
+					"details": "button",
+					"done": false
+				},
+				{
+					"details": "level",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {
