@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ygwtgkl02edx"]
+[gd_scene load_steps=15 format=3 uid="uid://ygwtgkl02edx"]
 
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="1_2o2ql"]
 [ext_resource type="Script" uid="uid://byf3vw2wgqki1" path="res://Common/main_menu.gd" id="1_lm13x"]
 [ext_resource type="Texture2D" uid="uid://d23nakgexhi5d" path="res://Common/Interface/UIsheet.png" id="1_onncr"]
+[ext_resource type="Texture2D" uid="uid://cmrg5swy2cswq" path="res://Common/Interface/Rect.png" id="4_lm13x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2o2ql"]
 
@@ -17,6 +18,23 @@ region_rect = Rect2(0, 36, 18, 18)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_80e4m"]
 texture = ExtResource("1_onncr")
 region_rect = Rect2(0, 0, 18, 18)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lm13x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rrbwj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbyjh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahawh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_perwu"]
+
+[sub_resource type="Theme" id="Theme_t8y46"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_lm13x")
+Button/styles/focus = SubResource("StyleBoxEmpty_rrbwj")
+Button/styles/hover = SubResource("StyleBoxEmpty_jbyjh")
+Button/styles/normal = SubResource("StyleBoxEmpty_ahawh")
+Button/styles/pressed = SubResource("StyleBoxEmpty_perwu")
 
 [node name="Main Menu" type="Control" groups=["main_menu"]]
 custom_minimum_size = Vector2(2000, 0)
@@ -33,6 +51,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 577.0
+offset_top = -2.0
+offset_right = -577.0
+offset_bottom = 684.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
@@ -40,6 +62,7 @@ theme_override_constants/margin_right = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 55.275)
@@ -81,7 +104,7 @@ layout_mode = 2
 
 [node name="All Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 0
 
 [node name="1 Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/All Buttons"]
 custom_minimum_size = Vector2(0, 128)
@@ -205,6 +228,10 @@ text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator" type="Control" parent="MarginContainer/VBoxContainer/All Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
 [node name="2 Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/All Buttons"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
@@ -327,6 +354,65 @@ text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator2" type="Control" parent="MarginContainer/VBoxContainer/All Buttons"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/All Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 115
+
+[node name="Bonus Level Button" type="HBoxContainer" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Bonus Level Rect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button"]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+texture = ExtResource("4_lm13x")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button/Bonus Level Rect"]
+layout_mode = 2
+offset_right = 378.0
+offset_bottom = 96.0
+theme = SubResource("Theme_t8y46")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button/Bonus Level Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+text = "BONUS LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusHighscore" type="Label" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2o2ql")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button1/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button2/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button3/Level3" to="." method="_on_level_3_pressed"]
@@ -335,3 +421,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/2 Buttons/Button6/Level6" to="." method="_on_level_6_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/2 Buttons/Button7/Level7" to="." method="_on_level_7_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/2 Buttons/Button8/Level8" to="." method="_on_level_8_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button/Bonus Level Rect/Button" to="." method="_on_button_pressed"]

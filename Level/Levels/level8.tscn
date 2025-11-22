@@ -111,5 +111,5 @@ direction = 1
 position = Vector2(0, 1)
 cell = 20
 frequency_seconds = 3.0
-speed = 1600
+speed = 2300
 direction = 1

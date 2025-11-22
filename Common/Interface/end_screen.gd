@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 func check_highscore():
 	if !guard:
 		guard = true
-		if Global.time < Global.get_level_highscore() or Global.get_level_highscore() == -1.0:
+		if Global.time < Global.get_level_highscore() or Global.get_level_highscore() <= 0.0:
 			Global.highscores[Global.current_level - 1.0] = Global.time
 			highscore_beaten = true
 			timer_label.modulate = Color.YELLOW

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dmwi40ouajy25"]
+[gd_scene load_steps=14 format=4 uid="uid://dmwi40ouajy25"]
 
 [ext_resource type="FontFile" uid="uid://b5tv4omnpy3ub" path="res://Common/Interface/nintendo-nes-font.ttf" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://e24xhc4cy77j" path="res://Level/logic/tile_map.tscn" id="2_fj7yv"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://5dlxkbs8h0kk" path="res://Common/Audio/load.wav" id="5_036b0"]
 [ext_resource type="Texture2D" uid="uid://b7uu4y8a2rptn" path="res://Level/Environment/leaf-Sheet.png" id="7_pkg7o"]
 [ext_resource type="AudioStream" uid="uid://bv1vnfdvyshgb" path="res://Common/Audio/QuittoMain.wav" id="8_gbfbk"]
+[ext_resource type="AudioStream" uid="uid://dt1rf6rc2w6bt" path="res://Common/Audio/BonusLevelAppear(1).wav" id="9_ioo17"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gbfbk"]
 particles_animation = true
@@ -111,3 +112,7 @@ process_material = SubResource("ParticleProcessMaterial_ioo17")
 [node name="QuitSfx" type="AudioStreamPlayer" parent="." groups=["quitsfx"]]
 stream = ExtResource("8_gbfbk")
 volume_db = 8.0
+
+[node name="BonusLevelSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ioo17")
+pitch_scale = 0.7
