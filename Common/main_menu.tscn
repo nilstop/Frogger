@@ -367,6 +367,7 @@ theme_override_constants/margin_right = 115
 [node name="Bonus Level Button" type="HBoxContainer" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
+alignment = 1
 
 [node name="Bonus Level Rect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button"]
 custom_minimum_size = Vector2(384, 0)

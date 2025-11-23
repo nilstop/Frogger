@@ -24,7 +24,6 @@ extends Control
 var test := 1
 
 
-
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
 
 const LABEL_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Button%d/Highscore"
@@ -98,16 +97,7 @@ func bonus_level():
 		message.text = "THANK YOU FOR PLAYING!"
 		
 		if Global.highscores.has(-2.00):
-			var tween = create_tween()
-			bonus_level_sfx.play()
-			bonus_separator.custom_minimum_size.y = 400.0
-			title_separator.custom_minimum_size.y = 64.0
-			button_separator.custom_minimum_size.y = 32.0
-			message_separator.custom_minimum_size.y = 64.0
-			tween.tween_property(bonus_separator, "custom_minimum_size:y", 16.0, 1.4).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-			tween.parallel().tween_property(title_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
-			tween.parallel().tween_property(button_separator, "custom_minimum_size:y", 16.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
-			tween.parallel().tween_property(message_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
+			bonus_animation()
 		else:
 			bonus_separator.custom_minimum_size.y = 16.0
 			title_separator.custom_minimum_size.y = 32.0
@@ -145,3 +135,22 @@ func _on_button_pressed() -> void:
 
 func done_loading() -> void:
 	hide()
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("debug_reset"):
+			bonus_animation()
+
+func bonus_animation():
+	bonus_button.show()
+	message.modulate = Color.YELLOW
+	message.text = "THANK YOU FOR PLAYING!"
+	bonus_level_sfx.play()
+	bonus_separator.custom_minimum_size.y = 400.0
+	title_separator.custom_minimum_size.y = 64.0
+	button_separator.custom_minimum_size.y = 32.0
+	message_separator.custom_minimum_size.y = 64.0
+	var tween = create_tween()
+	tween.tween_property(bonus_separator, "custom_minimum_size:y", 16.0, 1.4).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(title_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
+	tween.parallel().tween_property(button_separator, "custom_minimum_size:y", 16.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
+	tween.parallel().tween_property(message_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)

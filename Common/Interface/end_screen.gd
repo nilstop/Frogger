@@ -14,7 +14,7 @@ extends Control
 @onready var highscore_beaten_label: Label = $"../VBoxContainer/New Highscore"
 @onready var restart_sfx: AudioStreamPlayer = $RestartSfx
 
-
+@export var no_next_level_button: Array[int]
 
 
 var frog
@@ -29,6 +29,7 @@ func _ready() -> void:
 	frog.connect("frog_death", appear)
 	frog.connect("end", appear)
 	frog.connect("win", check_highscore)
+	frog.connect("start", remove)
 	buttons.hide()
 	case.hide()
 	input_message.hide()
@@ -58,6 +59,13 @@ func check_highscore():
 			timer_label.modulate = Color.WHITE
 
 func appear():
+	show()
+	if no_next_level_button.has(Global.current_level):
+		next_level.hide()
+		print("no next level")
+	else:
+		next_level.show()
+		print("next level button show")
 	disappearing = false
 	#If end screen is win screen
 	if frog.state == frog.States.WIN:
@@ -88,6 +96,9 @@ func disappear():
 	disappeartimer.start()
 	highscore_beaten_label.hide()
 	timer_label.modulate = Color.WHITE
+
+func remove():
+	hide()
 
 func _on_timer_timeout() -> void:
 	if death_screen == true:

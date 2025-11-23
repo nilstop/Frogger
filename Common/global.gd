@@ -6,8 +6,8 @@ var camera_x_divide := 3.0
 var driveway_tiles : Array
 var time := 0.000
 var current_level := -1
-#var highscores := [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0]
-var highscores := [-1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -2.0]
+var highscores := [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0]
+#var highscores := [-1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -2.0]
 var level_width := 11
 var level_width_offset := 2
 

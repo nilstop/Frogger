@@ -29,8 +29,6 @@ func _ready() -> void:
 	else:
 		timer.start()
 		instantiate()
-	
-	print(offset_timer.wait_time)
 	offset_timer.connect("timeout", offset_timeout)
 	if %PauseMenu.paused == false:
 		timer.paused = false
@@ -53,6 +51,5 @@ func instantiate():
 
 
 func offset_timeout():
-	print("offset end")
 	timer.start()
 	instantiate()

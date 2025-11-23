@@ -213,7 +213,7 @@ func collision_action(action: String):
 	if state == States.DEAD or state == States.WIN:
 		return
 	else:
-		if tweens.size():
+		if tweens.size() > 1:
 			tweens[tweens.size()-1].kill()
 		emit_signal("timer_end")
 		if action == "roadkill":
