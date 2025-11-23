@@ -414,6 +414,9 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BonusAnimationTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button1/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button2/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/1 Buttons/Button3/Level3" to="." method="_on_level_3_pressed"]
@@ -423,3 +426,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/2 Buttons/Button7/Level7" to="." method="_on_level_7_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/2 Buttons/Button8/Level8" to="." method="_on_level_8_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/All Buttons/MarginContainer/Bonus Level Button/Bonus Level Rect/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="BonusAnimationTimer" to="." method="_on_bonus_animation_timer_timeout"]

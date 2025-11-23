@@ -19,9 +19,12 @@ extends Control
 @onready var title_separator: Control = $MarginContainer/VBoxContainer/Separator2
 @onready var message_separator: Control = $MarginContainer/VBoxContainer/Separator3
 @onready var bonus_button: MarginContainer = $"MarginContainer/VBoxContainer/All Buttons/MarginContainer"
+@onready var bonus_level_particles: GPUParticles2D = %BonusLevelParticles
+@onready var bonus_animation_timer: Timer = $BonusAnimationTimer
 
 
-var test := 1
+
+var test := 0
 
 
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
@@ -136,10 +139,6 @@ func _on_button_pressed() -> void:
 func done_loading() -> void:
 	hide()
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("debug_reset"):
-			bonus_animation()
-
 func bonus_animation():
 	bonus_button.show()
 	message.modulate = Color.YELLOW
@@ -149,8 +148,12 @@ func bonus_animation():
 	title_separator.custom_minimum_size.y = 64.0
 	button_separator.custom_minimum_size.y = 32.0
 	message_separator.custom_minimum_size.y = 64.0
+	bonus_animation_timer.start()
 	var tween = create_tween()
 	tween.tween_property(bonus_separator, "custom_minimum_size:y", 16.0, 1.4).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(title_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
 	tween.parallel().tween_property(button_separator, "custom_minimum_size:y", 16.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
 	tween.parallel().tween_property(message_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
+
+func _on_bonus_animation_timer_timeout() -> void:
+	bonus_level_particles.emitting = true

@@ -18,7 +18,7 @@ func start():
 func _on_pause_pressed() -> void:
 	pause_sfx.play()
 	visible = !visible
-	if Global.get_level_highscore() != -1.0:
+	if Global.get_level_highscore() != -1.0 and Global.get_level_highscore() != -2.0:
 		highscore.text = "LEVEL FASTEST: " + str(Global.get_level_highscore()).pad_decimals(2) + "s"
 	else:
 		highscore.text = "NO FASTEST TIME"

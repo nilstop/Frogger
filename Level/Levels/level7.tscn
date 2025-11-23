@@ -94,8 +94,8 @@ time_offset = 0.8
 
 [node name="River4" parent="Elements" index="14" instance=ExtResource("4_jhj5b")]
 cell = 17
-frequency_seconds = 0.19
-speed = 1250
+frequency_seconds = 0.43
+speed = 670
 direction = -1
 
 [node name="Driveway9" parent="Elements" index="15" instance=ExtResource("2_plesh")]
