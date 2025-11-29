@@ -23,8 +23,7 @@ extends Control
 @onready var bonus_animation_timer: Timer = $BonusAnimationTimer
 
 
-
-var test := 0
+var test := 1
 
 
 #HANDLES MAIN MENU BUTTON THAT STARTS A LEVEL
@@ -34,6 +33,9 @@ const BUTTON_PATH := "MarginContainer/VBoxContainer/All Buttons/%d Buttons/Butto
 
 
 func _ready() -> void:
+	bonus_level_particles.emitting = true
+	bonus_level_particles.one_shot = true
+	
 	labels()
 	bonus_level()
 	loading_timer.connect("timeout", done_loading)
@@ -140,6 +142,7 @@ func done_loading() -> void:
 	hide()
 
 func bonus_animation():
+	
 	bonus_button.show()
 	message.modulate = Color.YELLOW
 	message.text = "THANK YOU FOR PLAYING!"
@@ -156,4 +159,5 @@ func bonus_animation():
 	tween.parallel().tween_property(message_separator, "custom_minimum_size:y", 32.0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_delay(0.5)
 
 func _on_bonus_animation_timer_timeout() -> void:
+	bonus_level_particles.show()
 	bonus_level_particles.emitting = true

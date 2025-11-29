@@ -108,13 +108,13 @@ text = "LOADING..."
 
 [node name="BonusLevelParticles" type="GPUParticles2D" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("CanvasItemMaterial_ic0uy")
 position = Vector2(639, 661)
 emitting = false
 amount = 35
 texture = ExtResource("10_wse8f")
 lifetime = 3.0
-one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2(-15140, -300, 30000, 600)
 process_material = SubResource("ParticleProcessMaterial_70uel")
